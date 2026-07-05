@@ -3,6 +3,7 @@ import About from "@/components/About";
 import Portfolio from "@/components/Portfolio";
 import Skills from "@/components/Skills";
 import Formation from "@/components/Formation";
+import InquiryForm from "@/components/InquiryForm";
 import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
 import Reveal from "@/components/Reveal";
@@ -22,6 +23,9 @@ export default function Home() {
       </Reveal>
       <Reveal>
         <Formation />
+      </Reveal>
+      <Reveal>
+        <InquiryForm />
       </Reveal>
       <Reveal>
         <Reviews />

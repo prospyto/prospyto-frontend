@@ -1,14 +1,28 @@
+import {
+  SiNextdotjs,
+  SiReact,
+  SiAngular,
+  SiDjango,
+  SiPython,
+  SiPostgresql,
+  SiTailwindcss,
+  SiFigma,
+} from "react-icons/si";
+import { PenTool, Palette } from "lucide-react";
+
 const SKILLS = [
-  "Next.js",
-  "React",
-  "Angular",
-  "Django",
-  "Python",
-  "PostgreSQL",
-  "Tailwind CSS",
-  "Figma",
-  "Canva",
-  "Pixellab",
+  { name: "Next.js", Icon: SiNextdotjs },
+  { name: "React", Icon: SiReact },
+  { name: "Angular", Icon: SiAngular },
+  { name: "Django", Icon: SiDjango },
+  { name: "Python", Icon: SiPython },
+  { name: "PostgreSQL", Icon: SiPostgresql },
+  { name: "Tailwind CSS", Icon: SiTailwindcss },
+  { name: "Figma", Icon: SiFigma },
+  // Pas de logo officiel Canva ou Pixellab dans la librairie d'icônes utilisée :
+  // icônes génériques plutôt que des logos inventés ou approximatifs.
+  { name: "Canva", Icon: Palette },
+  { name: "Pixellab", Icon: PenTool },
 ];
 
 export default function Skills() {
@@ -19,13 +33,14 @@ export default function Skills() {
       </h2>
 
       <div className="mt-6 flex flex-wrap gap-3">
-        {SKILLS.map((skill) => (
+        {SKILLS.map(({ name, Icon }) => (
           <span
-            key={skill}
-            className="text-sm px-4 py-2 rounded-full border border-white/10 text-white/80 font-body"
+            key={name}
+            className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-full border border-white/10 text-white/80 font-body"
             style={{ background: "#2d0a52" }}
           >
-            {skill}
+            <Icon size={16} />
+            {name}
           </span>
         ))}
       </div>

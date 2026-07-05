@@ -8,9 +8,12 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-24 md:py-32 text-center">
         <h1 className="hero-title font-heading font-bold text-4xl md:text-6xl leading-tight tracking-tight">
-          Prospère Azonglahoun | Dev &amp; Design
+          Prospère AZONGLAHOUN
         </h1>
-        <p className="mt-6 text-base md:text-lg text-secondary max-w-2xl mx-auto font-body">
+        <p className="mt-3 text-lg md:text-2xl font-heading font-medium text-secondary">
+          Développeur Full Stack
+        </p>
+        <p className="mt-6 text-base md:text-lg text-white/70 max-w-2xl mx-auto font-body">
           Sites web, applications et outils sur mesure pour entreprises et
           entrepreneurs en Afrique de l&apos;Ouest.
         </p>
