@@ -41,8 +41,7 @@ export default function Reviews() {
             style={{ background: "#2d0a52" }}
           >
             <p className="text-secondary text-sm font-body">
-              {"★".repeat(review.rating)}
-              {"☆".repeat(5 - review.rating)}
+              {review.rating} / 5
             </p>
             <p className="mt-3 text-sm text-white/80 font-body">
               {review.comment}

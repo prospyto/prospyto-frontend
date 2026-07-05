@@ -60,7 +60,7 @@ export default function CaseStudy() {
         rel="noopener noreferrer"
         className="mt-6 inline-block text-sm text-secondary underline underline-offset-4 font-body"
       >
-        Voir Swift Africa en ligne →
+        Voir Swift Africa en ligne
       </a>
     </section>
   );

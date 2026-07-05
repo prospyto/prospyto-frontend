@@ -32,7 +32,7 @@ export default function Contact() {
         onClick={copyEmail}
         className="mt-6 inline-flex items-center gap-2 rounded-xl bg-primary hover:bg-primary-hover px-5 py-3 text-sm font-heading font-semibold text-white transition-colors"
       >
-        {copied ? "Email copié ✓" : "Copier l'email"}
+        {copied ? "Email copié" : "Copier l'email"}
       </button>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -62,7 +62,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="text-white/80 hover:text-secondary transition-colors font-body"
             >
-              LinkedIn →
+              LinkedIn
             </a>
             <a
               href="https://www.facebook.com/prospere.azonglahoun"
@@ -70,7 +70,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="text-white/80 hover:text-secondary transition-colors font-body"
             >
-              Facebook →
+              Facebook
             </a>
           </div>
         </div>

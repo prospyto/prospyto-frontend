@@ -1,7 +1,12 @@
+import Blob from "./Blob";
+
 export default function Hero() {
   return (
-    <section className="bg-background text-white">
-      <div className="mx-auto max-w-5xl px-6 py-24 md:py-32 text-center">
+    <section className="relative bg-background text-white overflow-hidden">
+      <Blob color="var(--primary-color)" className="-top-20 -left-20" size={380} />
+      <Blob color="var(--secondary-color)" className="top-10 right-0" size={320} />
+
+      <div className="relative z-10 mx-auto max-w-5xl px-6 py-24 md:py-32 text-center">
         <h1 className="hero-title font-heading font-bold text-4xl md:text-6xl leading-tight tracking-tight">
           Prospère Azonglahoun | Dev &amp; Design
         </h1>

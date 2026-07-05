@@ -90,3 +90,55 @@ body {
   color: var(--admin-text);
   min-height: 100vh;
 }
+
+/* ---- Blobs animés en fond (formes floues qui bougent lentement) ---- */
+.blob-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+  animation: blob-float 12s ease-in-out infinite;
+}
+
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 25px) scale(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-shape {
+    animation: none;
+  }
+}
+
+/* ---- Scroll reveal : fondu + léger décalage vers le haut à l'apparition ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Curseur personnalisé actif : masque le curseur natif hors mobile */
+@media (pointer: fine) {
+  body.has-cloud-cursor {
+    cursor: none;
+  }
+  body.has-cloud-cursor a,
+  body.has-cloud-cursor button {
+    cursor: none;
+  }
+}

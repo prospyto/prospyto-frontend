@@ -5,17 +5,30 @@ import Skills from "@/components/Skills";
 import Formation from "@/components/Formation";
 import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
+import Reveal from "@/components/Reveal";
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <About />
-      <Portfolio />
-      <Skills />
-      <Formation />
-      <Reviews />
-      <Contact />
+      <Reveal>
+        <About />
+      </Reveal>
+      <Reveal>
+        <Portfolio />
+      </Reveal>
+      <Reveal>
+        <Skills />
+      </Reveal>
+      <Reveal>
+        <Formation />
+      </Reveal>
+      <Reveal>
+        <Reviews />
+      </Reveal>
+      <Reveal>
+        <Contact />
+      </Reveal>
     </main>
   );
 }
