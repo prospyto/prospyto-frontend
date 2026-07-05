@@ -74,3 +74,19 @@ body {
     background-position: 0% 50%;
   }
 }
+
+/* ---- Admin dashboard theme: dark navy + bleu de base (#0066CC), scope isolé du site public ---- */
+.admin-theme {
+  --admin-bg: #0b0f19;
+  --admin-surface: #131826;
+  --admin-surface-hover: #1a2033;
+  --admin-border: #232a3d;
+  --admin-accent: #0066cc;
+  --admin-accent-soft: #0066cc33;
+  --admin-text: #ffffff;
+  --admin-text-muted: #8b93a7;
+
+  background: var(--admin-bg);
+  color: var(--admin-text);
+  min-height: 100vh;
+}
