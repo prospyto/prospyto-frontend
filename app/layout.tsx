@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Prospyto | Dev & Design",
+  title: "Prospère Azonglahoun | Dev & Design",
   description:
     "Développement web freelance en Afrique de l'Ouest - Prospère Azonglahoun",
 };
@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${poppins.variable} ${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-neutral-900">
+      <body className="min-h-full flex flex-col bg-background text-white">
         {children}
       </body>
     </html>

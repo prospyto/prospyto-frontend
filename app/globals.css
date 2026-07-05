@@ -1,58 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
+  /* Palette officielle fournie (thème sombre violet) */
+  --background: #240046;
+  --primary-color: #5a189a;
+  --primary-hover: #7b2cbf;
+  --secondary-color: #e0aaff;
+  --text-main: #ffffff;
 
-  /* Prospyto.dev palette - from CAHIER_CHARGE_PROSPYTO design system */
-  --color-primary-50: #e6f0fa;
-  --color-primary-200: #b3d1f0;
-  --color-primary-500: #0066cc;
-  --color-primary-600: #0052a3;
-
-  --color-secondary-500: #7b2cbf;
-  --color-secondary-600: #62239a;
-
-  --color-action-500: #ff6b35;
-  --color-action-600: #e5551f;
-
-  --color-accent-500: #00d4ff;
-
+  /* Couleurs sémantiques (statuts) - conservées de la V1, toujours valables sur fond sombre */
   --color-success-500: #10b981;
   --color-warning-500: #f59e0b;
   --color-error-500: #ef4444;
-
-  --color-neutral-50: #f8f9fa;
-  --color-neutral-200: #e5e7eb;
-  --color-neutral-600: #757575;
-  --color-neutral-900: #1a1a1a;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-foreground: var(--text-main);
 
-  --color-primary-50: var(--color-primary-50);
-  --color-primary-200: var(--color-primary-200);
-  --color-primary-500: var(--color-primary-500);
-  --color-primary-600: var(--color-primary-600);
-
-  --color-secondary-500: var(--color-secondary-500);
-  --color-secondary-600: var(--color-secondary-600);
-
-  --color-action-500: var(--color-action-500);
-  --color-action-600: var(--color-action-600);
-
-  --color-accent-500: var(--color-accent-500);
+  --color-primary: var(--primary-color);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary-color);
+  --color-text-main: var(--text-main);
 
   --color-success-500: var(--color-success-500);
   --color-warning-500: var(--color-warning-500);
   --color-error-500: var(--color-error-500);
-
-  --color-neutral-50: var(--color-neutral-50);
-  --color-neutral-200: var(--color-neutral-200);
-  --color-neutral-600: var(--color-neutral-600);
-  --color-neutral-900: var(--color-neutral-900);
 
   --font-heading: var(--font-poppins);
   --font-body: var(--font-inter);
@@ -60,7 +33,7 @@
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--text-main);
   font-family: var(--font-body), system-ui, sans-serif;
 }
 
@@ -68,11 +41,11 @@ body {
 .hero-title {
   background-image: linear-gradient(
     90deg,
-    var(--color-primary-500),
-    var(--color-secondary-500),
-    var(--color-action-500),
-    var(--color-accent-500),
-    var(--color-primary-500)
+    var(--secondary-color),
+    var(--primary-hover),
+    var(--primary-color),
+    var(--primary-hover),
+    var(--secondary-color)
   );
   background-size: 300% 100%;
   -webkit-background-clip: text;
