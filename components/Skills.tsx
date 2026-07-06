@@ -39,22 +39,27 @@ const ALL_SKILLS = [...TECHNICAL_SKILLS, ...SOFT_SKILLS];
 export default function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-5xl px-6 py-16">
-      <h2 className="font-heading font-semibold text-2xl md:text-3xl text-secondary">
+      <span className="section-eyebrow">Savoir-faire</span>
+      <h2 className="mt-3 font-heading font-semibold text-3xl md:text-4xl text-white">
         Compétences
       </h2>
       <p className="mt-2 text-sm text-white/50 font-body">
         Fais défiler pour voir toutes les compétences.
       </p>
 
-      <div className="mt-6 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 scrollbar-thin">
+      <div className="mt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6">
         {ALL_SKILLS.map(({ name, Icon }) => (
           <div
             key={name}
-            className="snap-start shrink-0 w-[45%] sm:w-[30%] md:w-[23%] rounded-2xl p-5 flex flex-col items-center justify-center gap-3 text-center border border-white/10"
-            style={{ background: "#2d0a52" }}
+            className="card-surface snap-start shrink-0 w-[45%] sm:w-[30%] md:w-[23%] p-6 flex flex-col items-center justify-center gap-3 text-center"
           >
-            <Icon size={28} className="text-secondary" />
-            <span className="text-sm text-white/80 font-body">{name}</span>
+            <div
+              className="w-12 h-12 rounded-full flex items-center justify-center"
+              style={{ background: "rgba(224, 170, 255, 0.12)" }}
+            >
+              <Icon size={22} className="text-secondary" />
+            </div>
+            <span className="text-sm text-white/85 font-body font-medium">{name}</span>
           </div>
         ))}
       </div>

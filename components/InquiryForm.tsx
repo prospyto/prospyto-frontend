@@ -54,7 +54,8 @@ export default function InquiryForm() {
   if (status === "success") {
     return (
       <section id="commander" className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h2 className="font-heading font-semibold text-2xl md:text-3xl text-secondary">
+        <span className="section-eyebrow">C'est parti</span>
+        <h2 className="mt-3 font-heading font-semibold text-2xl md:text-3xl text-white">
           Demande envoyée
         </h2>
         <p className="mt-3 text-white/70 font-body">
@@ -66,7 +67,8 @@ export default function InquiryForm() {
 
   return (
     <section id="commander" className="mx-auto max-w-3xl px-6 py-20">
-      <h2 className="font-heading font-semibold text-2xl md:text-3xl text-secondary">
+      <span className="section-eyebrow">Passons à l'action</span>
+      <h2 className="mt-3 font-heading font-semibold text-3xl md:text-4xl text-white">
         Commander un projet
       </h2>
       <p className="mt-3 text-white/70 font-body">

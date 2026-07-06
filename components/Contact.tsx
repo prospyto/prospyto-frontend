@@ -24,12 +24,10 @@ export default function Contact() {
 
   return (
     <section id="contact" className="mx-auto max-w-md px-6 py-16 text-center">
-      <h2 className="font-heading font-semibold text-xl text-secondary">Contact</h2>
+      <span className="section-eyebrow">Parlons-en</span>
+      <h2 className="mt-3 font-heading font-semibold text-2xl text-white">Contact</h2>
 
-      <div
-        className="mt-5 rounded-2xl p-5 border border-white/10 flex flex-col gap-3"
-        style={{ background: "#2d0a52" }}
-      >
+      <div className="card-surface mt-6 p-6 flex flex-col gap-4 text-left">
         <button
           onClick={copyEmail}
           className="flex items-center gap-3 text-sm text-white/80 hover:text-secondary transition-colors font-body"

@@ -29,7 +29,8 @@ export default function Reviews() {
 
   return (
     <section id="avis" className="mx-auto max-w-5xl px-6 py-20">
-      <h2 className="font-heading font-semibold text-2xl md:text-3xl text-secondary">
+      <span className="section-eyebrow">Retours clients</span>
+      <h2 className="mt-3 font-heading font-semibold text-3xl md:text-4xl text-white">
         Ils m&apos;ont fait confiance
       </h2>
 
@@ -37,8 +38,7 @@ export default function Reviews() {
         {reviews.map((review, i) => (
           <div
             key={i}
-            className="rounded-2xl p-6 border border-white/10"
-            style={{ background: "#2d0a52" }}
+            className="card-surface p-6"
           >
             <p className="text-secondary text-sm font-body">
               {review.rating} / 5
