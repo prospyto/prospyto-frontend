@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Blob from "./Blob";
 import Stars from "./Stars";
+import Typewriter from "./Typewriter";
 
 export default function Hero() {
   return (
@@ -27,15 +28,16 @@ export default function Hero() {
           </div>
         </div>
 
-        <h1 className="hero-title mt-8 font-heading font-bold text-3xl md:text-5xl leading-tight tracking-tight">
-          Prospère AZONGLAHOUN
+        <h1 className="hero-title mt-8 font-heading font-bold text-2xl md:text-4xl leading-tight tracking-tight min-h-[2.4em] md:min-h-[1.2em]">
+          <Typewriter text="Je m'appelle Prospère Azonglahoun" />
         </h1>
         <p className="mt-3 text-lg md:text-2xl font-heading font-medium text-secondary">
           Développeur Full Stack
         </p>
         <p className="mt-6 text-base md:text-lg text-white/70 max-w-xl font-body">
-          Construisez votre application mobile, site web, portfolio, dont
-          vous avez besoin pour accroître votre business.
+          Je t&apos;aide à construire de A à Z ton allié informatique — ton
+          outil numérique pour faire avancer ton business : portfolio, site
+          web, site vitrine, et plus encore.
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -43,13 +45,13 @@ export default function Hero() {
             href="#commander"
             className="inline-flex items-center justify-center rounded-xl bg-primary hover:bg-primary-hover px-6 py-3 font-heading font-semibold text-sm md:text-base tracking-wide transition-colors text-white"
           >
-            Commander
+            Commander un projet
           </a>
           <a
             href="#portfolio"
             className="inline-flex items-center justify-center rounded-xl border border-secondary/40 hover:bg-primary/20 px-6 py-3 font-heading font-semibold text-sm md:text-base tracking-wide transition-colors text-white"
           >
-            Voir mes réalisations
+            Voir le portfolio
           </a>
         </div>
       </div>

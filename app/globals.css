@@ -168,3 +168,17 @@ body {
     opacity: 0.6;
   }
 }
+
+/* ---- Curseur clignotant de l'effet machine à écrire ---- */
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: cursor-blink 1s step-start infinite;
+  color: var(--secondary-color, #e0aaff);
+}
+
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
