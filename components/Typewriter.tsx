@@ -19,12 +19,11 @@ export default function Typewriter({
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) {
-      setDisplay(text);
-      return;
+      const id = setTimeout(() => setDisplay(text), 0);
+      return () => clearTimeout(id);
     }
 
     let i = 0;
-    setDisplay("");
     const interval = setInterval(() => {
       i += 1;
       setDisplay(text.slice(0, i));
