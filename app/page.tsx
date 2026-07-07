@@ -1,6 +1,8 @@
 import Hero from "@/components/Hero";
+import Features from "@/components/Features";
 import About from "@/components/About";
 import Portfolio from "@/components/Portfolio";
+import Services from "@/components/Services";
 import Skills from "@/components/Skills";
 import Formation from "@/components/Formation";
 import InquiryForm from "@/components/InquiryForm";
@@ -13,10 +15,16 @@ export default function Home() {
     <main>
       <Hero />
       <Reveal>
+        <Features />
+      </Reveal>
+      <Reveal>
         <About />
       </Reveal>
       <Reveal>
         <Portfolio />
+      </Reveal>
+      <Reveal>
+        <Services />
       </Reveal>
       <Reveal>
         <Skills />
