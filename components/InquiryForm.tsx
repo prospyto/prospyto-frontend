@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { User, Layers, FileText, Wallet, Clock } from "lucide-react";
 
 const PROJECT_TYPES = [
   "Site vitrine",
@@ -9,6 +10,11 @@ const PROJECT_TYPES = [
   "Design / branding",
   "Autre",
 ];
+
+// Dégradé violet -> lavande, cohérent avec l'identité du site
+// (le bleu/teal de l'image de référence n'est pas repris ici : cette
+// palette est propre à Prospyto, la structure "checklist numérotée" oui).
+const STEP_COLORS = ["#5a189a", "#7b2cbf", "#9d4edd", "#c77dff", "#e0aaff"];
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -54,7 +60,7 @@ export default function InquiryForm() {
   if (status === "success") {
     return (
       <section id="commander" className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <span className="section-eyebrow">C'est parti</span>
+        <span className="section-eyebrow">C&apos;est parti</span>
         <h2 className="mt-3 font-heading font-semibold text-2xl md:text-3xl text-white">
           Demande envoyée
         </h2>
@@ -65,9 +71,12 @@ export default function InquiryForm() {
     );
   }
 
+  const inputClass =
+    "w-full rounded-lg px-4 py-2.5 text-sm text-[#1a0b2e] placeholder-[#8a7ba0] font-body border border-transparent focus:outline-none focus:border-[var(--primary-color)] bg-white";
+
   return (
-    <section id="commander" className="mx-auto max-w-3xl px-6 py-20">
-      <span className="section-eyebrow">Passons à l'action</span>
+    <section id="commander" className="mx-auto max-w-2xl px-6 py-20">
+      <span className="section-eyebrow">Passons à l&apos;action</span>
       <h2 className="mt-3 font-heading font-semibold text-3xl md:text-4xl text-white">
         Commander un projet
       </h2>
@@ -75,76 +84,150 @@ export default function InquiryForm() {
         Décris ton projet, réponse par WhatsApp ou email.
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input
-          name="name"
-          required
-          placeholder="Nom complet"
-          className="rounded-lg px-4 py-3 text-sm text-white placeholder-white/40 font-body border border-white/10 focus:outline-none focus:border-secondary"
-          style={{ background: "#2d0a52" }}
-        />
-        <input
-          name="email"
-          type="email"
-          required
-          placeholder="Email"
-          className="rounded-lg px-4 py-3 text-sm text-white placeholder-white/40 font-body border border-white/10 focus:outline-none focus:border-secondary"
-          style={{ background: "#2d0a52" }}
-        />
-        <input
-          name="phone"
-          required
-          placeholder="Téléphone / WhatsApp"
-          className="rounded-lg px-4 py-3 text-sm text-white placeholder-white/40 font-body border border-white/10 focus:outline-none focus:border-secondary"
-          style={{ background: "#2d0a52" }}
-        />
-        <select
-          name="project_type"
-          required
-          defaultValue=""
-          className="rounded-lg px-4 py-3 text-sm text-white font-body border border-white/10 focus:outline-none focus:border-secondary"
-          style={{ background: "#2d0a52" }}
-        >
-          <option value="" disabled>
-            Type de projet
-          </option>
-          {PROJECT_TYPES.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-        <input
-          name="budget"
-          placeholder="Budget estimé (optionnel)"
-          className="rounded-lg px-4 py-3 text-sm text-white placeholder-white/40 font-body border border-white/10 focus:outline-none focus:border-secondary"
-          style={{ background: "#2d0a52" }}
-        />
-        <input
-          name="timeline"
-          placeholder="Délai souhaité (optionnel)"
-          className="rounded-lg px-4 py-3 text-sm text-white placeholder-white/40 font-body border border-white/10 focus:outline-none focus:border-secondary"
-          style={{ background: "#2d0a52" }}
-        />
-        <textarea
-          name="description"
-          required
-          rows={4}
-          placeholder="Décris ton projet"
-          className="md:col-span-2 rounded-lg px-4 py-3 text-sm text-white placeholder-white/40 font-body border border-white/10 focus:outline-none focus:border-secondary"
-          style={{ background: "#2d0a52" }}
-        />
+      <form onSubmit={handleSubmit} className="mt-10 flex flex-col">
+        {/* Étape 1 : Contact */}
+        <div className="flex items-stretch gap-0">
+          <div
+            className="flex-shrink-0 w-16 rounded-l-2xl flex items-center justify-center text-2xl font-heading font-bold text-white"
+            style={{ background: STEP_COLORS[0] }}
+          >
+            1
+          </div>
+          <div
+            className="flex-1 rounded-r-2xl px-5 py-4"
+            style={{ background: "white" }}
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <User size={18} color={STEP_COLORS[0]} />
+              <span className="text-xs font-body font-semibold uppercase tracking-wide text-[#1a0b2e]/60">
+                Tes coordonnées
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <input name="name" required placeholder="Nom complet" className={inputClass} />
+              <input name="email" type="email" required placeholder="Email" className={inputClass} />
+              <input name="phone" required placeholder="Téléphone / WhatsApp" className={inputClass} />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex justify-center py-1">
+          <div className="w-px h-4 border-l-2 border-dotted" style={{ borderColor: "rgba(255,255,255,0.2)" }} />
+        </div>
+
+        {/* Étape 2 : Type de projet */}
+        <div className="flex items-stretch gap-0">
+          <div
+            className="flex-shrink-0 w-16 rounded-l-2xl flex items-center justify-center text-2xl font-heading font-bold text-white"
+            style={{ background: STEP_COLORS[1] }}
+          >
+            2
+          </div>
+          <div className="flex-1 rounded-r-2xl px-5 py-4" style={{ background: "white" }}>
+            <div className="flex items-center gap-2 mb-3">
+              <Layers size={18} color={STEP_COLORS[1]} />
+              <span className="text-xs font-body font-semibold uppercase tracking-wide text-[#1a0b2e]/60">
+                Type de projet
+              </span>
+            </div>
+            <select name="project_type" required defaultValue="" className={inputClass}>
+              <option value="" disabled>
+                Choisis une catégorie
+              </option>
+              {PROJECT_TYPES.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="flex justify-center py-1">
+          <div className="w-px h-4 border-l-2 border-dotted" style={{ borderColor: "rgba(255,255,255,0.2)" }} />
+        </div>
+
+        {/* Étape 3 : Description */}
+        <div className="flex items-stretch gap-0">
+          <div
+            className="flex-shrink-0 w-16 rounded-l-2xl flex items-center justify-center text-2xl font-heading font-bold text-white"
+            style={{ background: STEP_COLORS[2] }}
+          >
+            3
+          </div>
+          <div className="flex-1 rounded-r-2xl px-5 py-4" style={{ background: "white" }}>
+            <div className="flex items-center gap-2 mb-3">
+              <FileText size={18} color={STEP_COLORS[2]} />
+              <span className="text-xs font-body font-semibold uppercase tracking-wide text-[#1a0b2e]/60">
+                Décris ton projet
+              </span>
+            </div>
+            <textarea
+              name="description"
+              required
+              rows={3}
+              placeholder="De quoi as-tu besoin ?"
+              className={inputClass}
+            />
+          </div>
+        </div>
+
+        <div className="flex justify-center py-1">
+          <div className="w-px h-4 border-l-2 border-dotted" style={{ borderColor: "rgba(255,255,255,0.2)" }} />
+        </div>
+
+        {/* Étape 4 : Budget */}
+        <div className="flex items-stretch gap-0">
+          <div
+            className="flex-shrink-0 w-16 rounded-l-2xl flex items-center justify-center text-2xl font-heading font-bold text-white"
+            style={{ background: STEP_COLORS[3] }}
+          >
+            4
+          </div>
+          <div className="flex-1 rounded-r-2xl px-5 py-4" style={{ background: "white" }}>
+            <div className="flex items-center gap-2 mb-3">
+              <Wallet size={18} color={STEP_COLORS[3]} />
+              <span className="text-xs font-body font-semibold uppercase tracking-wide text-[#1a0b2e]/60">
+                Budget estimé (optionnel)
+              </span>
+            </div>
+            <input name="budget" placeholder="Ex: 50 000 FCFA" className={inputClass} />
+          </div>
+        </div>
+
+        <div className="flex justify-center py-1">
+          <div className="w-px h-4 border-l-2 border-dotted" style={{ borderColor: "rgba(255,255,255,0.2)" }} />
+        </div>
+
+        {/* Étape 5 : Délai */}
+        <div className="flex items-stretch gap-0">
+          <div
+            className="flex-shrink-0 w-16 rounded-l-2xl flex items-center justify-center text-2xl font-heading font-bold text-white"
+            style={{ background: STEP_COLORS[4] }}
+          >
+            5
+          </div>
+          <div className="flex-1 rounded-r-2xl px-5 py-4" style={{ background: "white" }}>
+            <div className="flex items-center gap-2 mb-3">
+              <Clock size={18} color={STEP_COLORS[4]} />
+              <span className="text-xs font-body font-semibold uppercase tracking-wide text-[#1a0b2e]/60">
+                Délai souhaité (optionnel)
+              </span>
+            </div>
+            <input name="timeline" placeholder="Ex: 2 semaines" className={inputClass} />
+          </div>
+        </div>
 
         <button
           type="submit"
           disabled={status === "sending"}
-          className="md:col-span-2 rounded-xl bg-primary hover:bg-primary-hover px-6 py-3 font-heading font-semibold text-sm text-white transition-colors disabled:opacity-60"
+          className="mt-8 rounded-xl bg-primary hover:bg-primary-hover px-6 py-3 font-heading font-semibold text-sm text-white transition-colors disabled:opacity-60"
         >
           {status === "sending" ? "Envoi en cours" : "Envoyer la demande"}
         </button>
 
         {status === "error" && (
-          <p className="md:col-span-2 text-sm font-body" style={{ color: "#ef4444" }}>
+          <p className="mt-3 text-sm font-body" style={{ color: "#ef4444" }}>
             {errorMessage}
           </p>
         )}
