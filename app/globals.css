@@ -90,3 +90,157 @@ body {
   color: var(--admin-text);
   min-height: 100vh;
 }
+
+/* ---- Blobs animés en fond (formes floues qui bougent lentement) ---- */
+.blob-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+  animation: blob-float 12s ease-in-out infinite;
+}
+
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 25px) scale(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-shape {
+    animation: none;
+  }
+}
+
+/* ---- Scroll reveal : fondu + léger décalage vers le haut à l'apparition ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Curseur personnalisé actif : masque le curseur natif hors mobile */
+@media (pointer: fine) {
+  body.has-cloud-cursor {
+    cursor: none;
+  }
+  body.has-cloud-cursor a,
+  body.has-cloud-cursor button {
+    cursor: none;
+  }
+}
+
+/* ---- Étoiles scintillantes en fond du Hero ---- */
+.twinkle-star {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--secondary-color, #e0aaff);
+  animation: star-twinkle 2.6s ease-in-out infinite;
+}
+
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twinkle-star {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* ---- Curseur clignotant de l'effet machine à écrire ---- */
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: cursor-blink 1s step-start infinite;
+  color: var(--secondary-color, #e0aaff);
+}
+
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---- Système de cartes : profondeur, dégradé, effet au survol ---- */
+.card-surface {
+  position: relative;
+  background: linear-gradient(155deg, #33095e 0%, #1c0538 100%);
+  border: 1px solid rgba(224, 170, 255, 0.14);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-surface:hover {
+  transform: translateY(-4px);
+  border-color: rgba(224, 170, 255, 0.4);
+  box-shadow: 0 18px 40px -10px rgba(90, 24, 154, 0.55);
+}
+
+/* Liseré lumineux en haut de carte, façon accent de marque */
+.card-surface::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.25rem;
+  right: 1.25rem;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+  opacity: 0.6;
+}
+
+/* ---- En-tête de section : petit repère au-dessus du titre ---- */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+  opacity: 0.7;
+}
+
+.section-eyebrow::before {
+  content: "";
+  width: 1.5rem;
+  height: 2px;
+  background: var(--secondary-color);
+  display: inline-block;
+}
+
+/* ---- Alternance de fond entre sections pour créer du rythme visuel ---- */
+.section-tint {
+  position: relative;
+}
+
+.section-tint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(90, 24, 154, 0.18), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}

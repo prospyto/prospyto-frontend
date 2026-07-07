@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
+import CloudCursor from "@/components/CloudCursor";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -27,7 +28,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${poppins.variable} ${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-background text-white">
+      <body className="min-h-full flex flex-col bg-background text-white has-cloud-cursor">
+        <CloudCursor />
         {children}
       </body>
     </html>

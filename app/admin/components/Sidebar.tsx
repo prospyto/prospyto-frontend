@@ -3,12 +3,12 @@
 import { useState } from "react";
 
 const NAV_ITEMS = [
-  { key: "overview", label: "Vue d'ensemble", icon: "◧" },
-  { key: "inquiries", label: "Demandes", icon: "✉" },
-  { key: "projects", label: "Projets en cours", icon: "▤" },
-  { key: "notifications", label: "Notifications", icon: "◔" },
-  { key: "reviews", label: "Avis reçus", icon: "★" },
-  { key: "blog", label: "Blog", icon: "▥" },
+  { key: "overview", label: "Vue d'ensemble" },
+  { key: "inquiries", label: "Demandes" },
+  { key: "projects", label: "Projets en cours" },
+  { key: "notifications", label: "Notifications" },
+  { key: "reviews", label: "Avis reçus" },
+  { key: "blog", label: "Blog" },
 ];
 
 export default function Sidebar() {
@@ -41,7 +41,6 @@ export default function Sidebar() {
                 color: isActive ? "#ffffff" : "var(--admin-text-muted)",
               }}
             >
-              <span aria-hidden>{item.icon}</span>
               {item.label}
             </button>
           );
