@@ -7,6 +7,11 @@ import {
   SiPostgresql,
   SiTailwindcss,
   SiFigma,
+  SiNodedotjs,
+  SiExpress,
+  SiTypescript,
+  SiMongodb,
+  SiGit,
 } from "react-icons/si";
 import { PenTool, Palette, Users, Puzzle, Compass, MessageCircle } from "lucide-react";
 
@@ -15,9 +20,14 @@ const TECHNICAL_SKILLS = [
   { name: "React", Icon: SiReact },
   { name: "Angular", Icon: SiAngular },
   { name: "Django", Icon: SiDjango },
+  { name: "Node.js", Icon: SiNodedotjs },
+  { name: "Express.js", Icon: SiExpress },
+  { name: "TypeScript", Icon: SiTypescript },
   { name: "Python", Icon: SiPython },
   { name: "PostgreSQL", Icon: SiPostgresql },
+  { name: "MongoDB", Icon: SiMongodb },
   { name: "Tailwind CSS", Icon: SiTailwindcss },
+  { name: "Git", Icon: SiGit },
   { name: "Figma", Icon: SiFigma },
   // Pas de logo officiel Canva ou Pixellab dans la librairie utilisée :
   // icônes génériques plutôt que des logos approximatifs.
