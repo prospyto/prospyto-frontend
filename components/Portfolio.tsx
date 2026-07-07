@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 type Project = {
   id: string;
@@ -23,7 +24,7 @@ const PROJECTS: Project[] = [
     description:
       "Conception et développement de mon site portfolio professionnel. Une plateforme rapide, responsive et optimisée pour la conversion de clients.",
     fullDescription:
-      "Conception et développement de mon portfolio professionnel — une plateforme optimisée pour showcase mes compétences et projets réalisés. L'objectif était de créer un site rapide, responsive et convertisseur intégrant une présentation claire des projets avec modal détails, système de compétences (techniques + non-techniques), et formulaire de contact compact. Utilise les meilleures pratiques de performance et UX.",
+      "Conception et développement de mon portfolio professionnel, une plateforme optimisée pour showcase mes compétences et projets réalisés. L&apos;objectif était de créer un site rapide, responsive et convertisseur intégrant une présentation claire des projets avec modal détails, système de compétences (techniques + non-techniques), et formulaire de contact compact. Utilise les meilleures pratiques de performance et UX.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Framer Motion"],
     link: "https://prospytodev.vercel.app/",
     github: "https://github.com/prospyto/prospyto-frontend",
@@ -71,7 +72,7 @@ export default function Portfolio() {
           Mes Projets
         </h2>
         <p className="mt-3 text-white/60 font-body max-w-2xl">
-          Quelques réalisations récentes — du produit complet à la landing
+          Quelques réalisations récentes, du produit complet à la landing
           page orientée conversion.
         </p>
 
@@ -124,8 +125,9 @@ export default function Portfolio() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-4 text-xs text-primary font-heading">
-                  Cliquez pour voir plus →
+                <p className="mt-4 flex items-center gap-1 text-xs text-primary font-heading">
+                  Cliquez pour voir plus
+                  <ArrowRight size={14} />
                 </p>
               </div>
             </button>
@@ -193,9 +195,10 @@ export default function Portfolio() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
+                    className="btn-animate btn-primary-fx inline-flex items-center gap-2 rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
                   >
-                    Voir la démo →
+                    Voir la démo
+                    <ArrowRight size={16} />
                   </a>
                 )}
                 {project.github && (
@@ -203,9 +206,10 @@ export default function Portfolio() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-primary/50 hover:bg-primary/10 px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
+                    className="btn-animate inline-flex items-center gap-2 rounded-lg border border-primary/50 hover:bg-primary/10 px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
                   >
-                    Code GitHub →
+                    Code GitHub
+                    <ArrowRight size={16} />
                   </a>
                 )}
               </div>
@@ -213,7 +217,7 @@ export default function Portfolio() {
               {/* Fermer */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="mt-8 w-full py-2 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 hover:text-white transition-colors text-sm font-body"
+                className="btn-animate mt-8 w-full py-2 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 hover:text-white transition-colors text-sm font-body"
               >
                 Fermer (Esc)
               </button>

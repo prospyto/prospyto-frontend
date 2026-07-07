@@ -65,7 +65,7 @@ export default function InquiryForm() {
           Demande envoyée
         </h2>
         <p className="mt-3 text-white/70 font-body">
-          Merci. La demande est bien enregistrée — réponse à venir rapidement.
+          Merci. La demande est bien enregistrée, réponse à venir rapidement.
         </p>
       </section>
     );

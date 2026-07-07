@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Clock, Check, MessageCircle, Mail } from "lucide-react";
 import Blob from "./Blob";
 
 export default function FreeCallCTA() {
@@ -30,9 +31,10 @@ export default function FreeCallCTA() {
         style={{ background: "linear-gradient(135deg, rgba(45,10,82,0.8), rgba(26,10,46,0.8))" }}>
         
         {/* Urgence Badge */}
-        <div className="inline-block mb-6 px-4 py-2 rounded-full border border-secondary/50 bg-secondary/10">
+        <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-secondary/50 bg-secondary/10">
+          <Clock size={16} className="text-secondary" />
           <p className="text-sm font-heading font-semibold text-secondary">
-            ⏰ 3 spots disponibles ce mois — Agis vite!
+            3 spots disponibles ce mois, agis vite!
           </p>
         </div>
 
@@ -44,7 +46,7 @@ export default function FreeCallCTA() {
         {/* Description */}
         <p className="text-lg text-white/80 font-body mb-8 max-w-2xl leading-relaxed">
           Réserve un appel découverte gratuit de 30 minutes. On discutera de ton idée, 
-          de tes besoins, et je te dirai exactement comment je peux t'aider.
+          de tes besoins, et je te dirai exactement comment je peux t&apos;aider.
         </p>
 
         {/* Formulaire */}
@@ -59,24 +61,31 @@ export default function FreeCallCTA() {
           />
           <button
             type="submit"
-            className="px-8 py-3 rounded-lg bg-primary hover:bg-primary-hover font-heading font-semibold text-white transition-colors whitespace-nowrap"
+            className="btn-animate btn-primary-fx inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-primary hover:bg-primary-hover font-heading font-semibold text-white transition-colors whitespace-nowrap"
           >
-            {submitted ? "✓ Vérifie ton email!" : "Réserver l'appel"}
+            {submitted ? (
+              <>
+                <Check size={18} />
+                Vérifie ton email!
+              </>
+            ) : (
+              "Réserver l'appel"
+            )}
           </button>
         </form>
 
         {/* Infos supplémentaires */}
         <div className="flex flex-col sm:flex-row gap-6 text-sm text-white/70 font-body">
           <div className="flex items-center gap-2">
-            <span>✓</span>
-            <p>Pas d'engagement</p>
+            <Check size={16} className="text-secondary" />
+            <p>Pas d&apos;engagement</p>
           </div>
           <div className="flex items-center gap-2">
-            <span>✓</span>
+            <Check size={16} className="text-secondary" />
             <p>Réponse en moins de 24h</p>
           </div>
           <div className="flex items-center gap-2">
-            <span>✓</span>
+            <Check size={16} className="text-secondary" />
             <p>Appel via WhatsApp/Zoom</p>
           </div>
         </div>
@@ -89,15 +98,17 @@ export default function FreeCallCTA() {
               href="https://wa.me/22901906856"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary/50 hover:bg-secondary/10 text-secondary font-body transition-colors text-sm"
+              className="btn-animate inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary/50 hover:bg-secondary/10 text-secondary font-body transition-colors text-sm"
             >
-              💬 WhatsApp
+              <MessageCircle size={16} />
+              WhatsApp
             </a>
             <a
               href="mailto:prospereazonglahoun@gmail.com"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary/50 hover:bg-secondary/10 text-secondary font-body transition-colors text-sm"
+              className="btn-animate inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary/50 hover:bg-secondary/10 text-secondary font-body transition-colors text-sm"
             >
-              📧 Email
+              <Mail size={16} />
+              Email
             </a>
           </div>
         </div>

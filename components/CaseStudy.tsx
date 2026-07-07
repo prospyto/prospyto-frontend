@@ -12,7 +12,7 @@ export default function CaseStudy() {
         Étude de cas
       </p>
       <h2 className="mt-2 font-heading font-semibold text-2xl md:text-3xl text-white">
-        Swift Africa — du problème au produit
+        Swift Africa : du problème au produit
       </h2>
 
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -29,7 +29,7 @@ export default function CaseStudy() {
           <p className="mt-2 text-sm text-white/70 font-body">
             Un système d&apos;escrow : l&apos;argent de l&apos;acheteur est
             bloqué jusqu&apos;à la livraison, validée par un code OTP donné
-            au livreur. Personne n&apos;est payé — ou lésé — avant ce moment.
+            au livreur. Personne n&apos;est payé (ou lésé) avant ce moment.
           </p>
         </div>
         <div>

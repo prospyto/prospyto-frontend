@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 // Fait apparaître son contenu (fondu + léger décalage) quand il entre dans
 // le viewport. Code original basé sur IntersectionObserver natif du
-// navigateur — pas de bibliothèque externe.
+// navigateur, pas de bibliothèque externe.
 export default function Reveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);

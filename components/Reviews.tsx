@@ -47,7 +47,7 @@ export default function Reviews() {
               {review.comment}
             </p>
             <p className="mt-4 text-xs text-white/50 font-body">
-              {review.client_name} — {review.project_title}
+              {review.client_name}, {review.project_title}
             </p>
           </div>
         ))}

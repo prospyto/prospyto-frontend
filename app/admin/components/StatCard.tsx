@@ -1,3 +1,5 @@
+import { TrendingUp, TrendingDown } from "lucide-react";
+
 export default function StatCard({
   label,
   value,
@@ -22,10 +24,11 @@ export default function StatCard({
       </p>
       {trend && (
         <p
-          className="mt-1 text-xs font-body"
+          className="mt-1 flex items-center gap-1 text-xs font-body"
           style={{ color: trendUp ? "#10b981" : "#ef4444" }}
         >
-          {trendUp ? "↗" : "↘"} {trend}
+          {trendUp ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+          {trend}
         </p>
       )}
     </div>

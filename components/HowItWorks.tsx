@@ -1,3 +1,4 @@
+import { Phone, ClipboardList, Settings, Rocket } from "lucide-react";
 import Blob from "./Blob";
 
 export default function HowItWorks() {
@@ -7,28 +8,28 @@ export default function HowItWorks() {
       title: "Appel Découverte",
       description:
         "On se parle 30 min (gratuit). Tu me décris ton projet, tes besoins, tes deadlines.",
-      icon: "📞",
+      Icon: Phone,
     },
     {
       number: "02",
       title: "Proposition Personnalisée",
       description:
         "Je crée une proposition: scope clair, timeline réaliste, prix honnête. Pas de surprise.",
-      icon: "📋",
+      Icon: ClipboardList,
     },
     {
       number: "03",
       title: "Développement",
       description:
         "Je construis ton projet avec les meilleures technos. Mises à jour régulières, tu vois la progression.",
-      icon: "⚙️",
+      Icon: Settings,
     },
     {
       number: "04",
       title: "Livraison & Support",
       description:
         "Le projet est live, testé, optimisé. Je suis là pour les ajustements post-lancement.",
-      icon: "🚀",
+      Icon: Rocket,
     },
   ];
 
@@ -61,7 +62,7 @@ export default function HowItWorks() {
 
               {/* Contenu */}
               <div className="mt-4">
-                <p className="text-3xl mb-3">{step.icon}</p>
+                <step.Icon size={32} className="mb-3 text-secondary" />
                 <h3 className="font-heading font-semibold text-lg text-white mb-3">
                   {step.title}
                 </h3>

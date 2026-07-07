@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Sparkles, ArrowRight, Phone } from "lucide-react";
 import Blob from "./Blob";
 import Stars from "./Stars";
 
@@ -14,38 +15,39 @@ export default function Hero() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Texte */}
           <div>
-            <p className="text-secondary font-heading font-semibold text-sm uppercase tracking-wide mb-3">
-              ✨ Ton allié pour transformer une idée en produit qui marche
+            <p className="flex items-center gap-2 text-secondary font-heading font-semibold text-sm uppercase tracking-wide mb-3">
+              <Sparkles size={16} />
+              Ton allié pour transformer une idée en produit qui marche
             </p>
             
             <h1 className="font-heading font-bold text-4xl md:text-5xl leading-tight tracking-tight text-white mb-4">
-              Tu as besoin d'un site web, d'une app, ou d'un outil?
+              Tu as besoin d&apos;un site web, d&apos;une app, ou d&apos;un outil?
             </h1>
             
             <p className="text-lg text-white/80 font-body mb-6 leading-relaxed">
               Je suis <strong>Prospère</strong>, développeur Full Stack. Je construis des 
               solutions numériques complètes pour startups, petits business et solopreneurs 
-              qui veulent avancer — vite et bien.
+              qui veulent avancer, vite et bien.
             </p>
 
             {/* Liste des problèmes résolus */}
             <div className="space-y-3 mb-8">
               <div className="flex items-start gap-3">
-                <span className="text-secondary font-bold text-xl">→</span>
+                <ArrowRight size={20} className="text-secondary flex-shrink-0 mt-0.5" />
                 <p className="text-white/80 font-body">
                   <strong>Site web trop lent?</strong> Je le rends rapide et responsive.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <span className="text-secondary font-bold text-xl">→</span>
+                <ArrowRight size={20} className="text-secondary flex-shrink-0 mt-0.5" />
                 <p className="text-white/80 font-body">
                   <strong>Pas de boutique en ligne?</strong> Je crée un e-commerce qui vend.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <span className="text-secondary font-bold text-xl">→</span>
+                <ArrowRight size={20} className="text-secondary flex-shrink-0 mt-0.5" />
                 <p className="text-white/80 font-body">
-                  <strong>Besoin d'une app mobile ou outil interne?</strong> C'est mon domaine.
+                  <strong>Besoin d&apos;une app mobile ou outil interne?</strong> C&apos;est mon domaine.
                 </p>
               </div>
             </div>
@@ -53,12 +55,13 @@ export default function Hero() {
             {/* CTA Principal */}
             <a
               href="#appel-gratuit"
-              className="inline-flex items-center justify-center rounded-xl bg-primary hover:bg-primary-hover px-8 py-4 font-heading font-semibold text-base md:text-lg tracking-wide transition-all text-white shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="btn-animate btn-primary-fx inline-flex items-center gap-2 justify-center rounded-xl bg-primary hover:bg-primary-hover px-8 py-4 font-heading font-semibold text-base md:text-lg tracking-wide transition-colors text-white"
             >
-              📞 Appel découverte gratuit (30 min)
+              <Phone size={20} />
+              Appel découverte gratuit (30 min)
             </a>
             <p className="text-sm text-white/60 font-body mt-3">
-              Pas d'engagement. On discute juste de ton projet.
+              Pas d&apos;engagement. On discute juste de ton projet.
             </p>
           </div>
 

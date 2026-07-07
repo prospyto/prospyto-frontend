@@ -4,7 +4,7 @@ const FEATURES = [
   {
     icon: Link2,
     title: "Lien unique, zéro friction",
-    description: "Chaque client suit son projet via un lien personnel — aucun compte à créer.",
+    description: "Chaque client suit son projet via un lien personnel, aucun compte à créer.",
   },
   {
     icon: Activity,
@@ -14,7 +14,7 @@ const FEATURES = [
   {
     icon: MessageCircle,
     title: "WhatsApp comme canal principal",
-    description: "Toute la communication reste là où tu es déjà — pas de nouvel outil à apprendre.",
+    description: "Toute la communication reste là où tu es déjà, pas de nouvel outil à apprendre.",
   },
   {
     icon: Bell,

@@ -7,7 +7,7 @@ const SERVICES = [
   {
     title: "Design & branding",
     description:
-      "Affiches, décors visuels, identité de marque — tout ce qu'il faut pour construire une image cohérente autour de ton activité.",
+      "Affiches, décors visuels, identité de marque, tout ce qu&apos;il faut pour construire une image cohérente autour de ton activité.",
   },
 ];
 

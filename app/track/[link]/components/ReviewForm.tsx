@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { Star } from "lucide-react";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -47,11 +48,14 @@ export default function ReviewForm({ link }: { link: string }) {
             type="button"
             key={n}
             onClick={() => setRating(n)}
-            className="text-xl leading-none"
-            style={{ color: n <= rating ? "var(--secondary-color)" : "rgba(255,255,255,0.2)" }}
+            className="btn-animate leading-none"
             aria-label={`${n} étoile${n > 1 ? "s" : ""}`}
           >
-            ★
+            <Star
+              size={22}
+              fill={n <= rating ? "var(--secondary-color)" : "none"}
+              color={n <= rating ? "var(--secondary-color)" : "rgba(255,255,255,0.3)"}
+            />
           </button>
         ))}
       </div>
