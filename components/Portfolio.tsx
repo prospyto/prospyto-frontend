@@ -178,7 +178,7 @@ export default function Portfolio() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
+                    className="btn-animate btn-primary-fx inline-flex items-center gap-2 rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
                   >
                     Voir la démo →
                   </a>
@@ -188,7 +188,7 @@ export default function Portfolio() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-secondary/40 hover:bg-primary/10 px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
+                    className="btn-animate inline-flex items-center gap-2 rounded-lg border border-secondary/40 hover:bg-primary/10 px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
                   >
                     Code GitHub →
                   </a>
@@ -197,7 +197,7 @@ export default function Portfolio() {
 
               <button
                 onClick={() => setSelectedId(null)}
-                className="mt-8 w-full py-2 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 hover:text-white transition-colors text-sm font-body"
+                className="btn-animate mt-8 w-full py-2 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 hover:text-white transition-colors text-sm font-body"
               >
                 Fermer
               </button>

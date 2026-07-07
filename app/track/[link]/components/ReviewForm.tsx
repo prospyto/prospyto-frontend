@@ -69,7 +69,7 @@ export default function ReviewForm({ link }: { link: string }) {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-4 px-4 py-2 rounded-lg text-sm font-body font-medium"
+        className="mt-4 btn-animate btn-primary-fx px-4 py-2 rounded-lg text-sm font-body font-medium"
         style={{ background: "var(--primary-color)", color: "#fff" }}
       >
         {status === "sending" ? "Envoi…" : "Envoyer mon avis"}

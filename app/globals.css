@@ -183,6 +183,73 @@ body {
   }
 }
 
+/* ---- Animation des boutons : effet tactile (scale + ombre) sur tous les boutons ---- */
+.btn-animate {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-animate:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px -6px rgba(90, 24, 154, 0.5);
+}
+
+.btn-animate:active {
+  transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-animate {
+    transition: none;
+  }
+  .btn-animate:hover,
+  .btn-animate:active {
+    transform: none;
+  }
+}
+
+/* ---- Effet supplémentaire pour les boutons d'action principale :
+   balayage lumineux au survol + halo qui pulse doucement en continu ---- */
+.btn-primary-fx {
+  position: relative;
+  overflow: hidden;
+  animation: btn-halo-pulse 2.4s ease-in-out infinite;
+}
+
+.btn-primary-fx::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-primary-fx:hover::after {
+  left: 125%;
+}
+
+@keyframes btn-halo-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(224, 170, 255, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 9px rgba(224, 170, 255, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary-fx {
+    animation: none;
+  }
+  .btn-primary-fx::after {
+    display: none;
+  }
+}
+
 /* ---- Système de cartes : profondeur, dégradé, effet au survol ---- */
 .card-surface {
   position: relative;
