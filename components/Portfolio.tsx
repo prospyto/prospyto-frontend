@@ -17,6 +17,19 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
+    id: "prospyto-dev",
+    title: "Prospyto.dev",
+    tagline: "Mon Portfolio Personnel",
+    description:
+      "Conception et développement de mon site portfolio professionnel. Une plateforme rapide, responsive et optimisée pour la conversion de clients.",
+    fullDescription:
+      "Conception et développement de mon portfolio professionnel — une plateforme optimisée pour showcase mes compétences et projets réalisés. L'objectif était de créer un site rapide, responsive et convertisseur intégrant une présentation claire des projets avec modal détails, système de compétences (techniques + non-techniques), et formulaire de contact compact. Utilise les meilleures pratiques de performance et UX.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Framer Motion"],
+    link: "https://prospytodev.vercel.app/",
+    github: "https://github.com/prospyto/prospyto-frontend",
+    image: "/prospyto-portfolio.jpeg",
+  },
+  {
     id: "swift-africa",
     title: "Swift Africa",
     tagline: "Achetez. Vendez. Livrez.",
