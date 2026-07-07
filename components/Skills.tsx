@@ -1,4 +1,4 @@
-const SKILLS = [
+const TECHNICAL_SKILLS = [
   "Next.js",
   "React",
   "Angular",
@@ -6,9 +6,20 @@ const SKILLS = [
   "Python",
   "PostgreSQL",
   "Tailwind CSS",
-  "Figma",
-  "Canva",
-  "Pixellab",
+  "Node.js",
+  "Express.js",
+  "TypeScript",
+  "MongoDB",
+  "Git",
+];
+
+const SOFT_SKILLS = [
+  "Communication",
+  "Autonomie",
+  "Résolution de problèmes",
+  "Adaptabilité",
+  "Gestion de projets",
+  "Collaboration",
 ];
 
 export default function Skills() {
@@ -18,16 +29,40 @@ export default function Skills() {
         Compétences
       </h2>
 
-      <div className="mt-6 flex flex-wrap gap-3">
-        {SKILLS.map((skill) => (
-          <span
-            key={skill}
-            className="text-sm px-4 py-2 rounded-full border border-white/10 text-white/80 font-body"
-            style={{ background: "#2d0a52" }}
-          >
-            {skill}
-          </span>
-        ))}
+      {/* Compétences Techniques */}
+      <div className="mt-8">
+        <h3 className="font-heading text-lg font-semibold text-primary mb-4">
+          Techniques
+        </h3>
+        <div className="flex flex-wrap gap-3">
+          {TECHNICAL_SKILLS.map((skill) => (
+            <span
+              key={skill}
+              className="text-sm px-4 py-2 rounded-full border border-white/10 text-white/80 font-body hover:border-primary/50 transition-colors"
+              style={{ background: "#2d0a52" }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Compétences Non-Techniques */}
+      <div className="mt-8">
+        <h3 className="font-heading text-lg font-semibold text-secondary mb-4">
+          Non-Techniques
+        </h3>
+        <div className="flex flex-wrap gap-3">
+          {SOFT_SKILLS.map((skill) => (
+            <span
+              key={skill}
+              className="text-sm px-4 py-2 rounded-full border border-white/10 text-white/80 font-body hover:border-secondary/50 transition-colors"
+              style={{ background: "#1a0a2e" }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

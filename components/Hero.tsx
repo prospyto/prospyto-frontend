@@ -17,10 +17,10 @@ export default function Hero() {
             Commander un Projet
           </a>
           <a
-            href="#portfolio"
+            href="#projects"
             className="inline-flex items-center justify-center rounded-xl border border-secondary/40 hover:bg-primary/20 px-6 py-3 font-heading font-semibold text-sm md:text-base tracking-wide transition-colors text-white"
           >
-            Voir le Portfolio
+            Voir mes réalisations
           </a>
         </div>
       </div>
