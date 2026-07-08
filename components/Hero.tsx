@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { Sparkles, ArrowRight, Phone } from "lucide-react";
+import { Zap, ShoppingCart, Smartphone, Phone } from "lucide-react";
 import Blob from "./Blob";
 import Stars from "./Stars";
+import StatCounter from "./StatCounter";
 
 export default function Hero() {
   return (
@@ -15,17 +16,13 @@ export default function Hero() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Texte */}
           <div>
-            <p className="flex items-center gap-2 text-secondary font-heading font-semibold text-sm uppercase tracking-wide mb-3">
-              <Sparkles size={16} />
-              Ton allié pour transformer une idée en produit qui marche
-            </p>
-            
             <h1 className="font-heading font-bold text-4xl md:text-5xl leading-tight tracking-tight text-white mb-4">
               Tu as besoin d&apos;un site web, d&apos;une app, ou d&apos;un outil?
             </h1>
             
             <p className="text-lg text-white/80 font-body mb-6 leading-relaxed">
-              Je suis <strong>Prospère</strong>, développeur Full Stack. Je construis des 
+              Je suis <strong>Prospère</strong>, développeur Full Stack, ton allié pour 
+              transformer une idée en produit qui marche. Je construis des 
               solutions numériques complètes pour startups, petits business et solopreneurs 
               qui veulent avancer, vite et bien.
             </p>
@@ -33,19 +30,19 @@ export default function Hero() {
             {/* Liste des problèmes résolus */}
             <div className="space-y-3 mb-8">
               <div className="flex items-start gap-3">
-                <ArrowRight size={20} className="text-secondary flex-shrink-0 mt-0.5" />
+                <Zap size={20} className="text-secondary flex-shrink-0 mt-0.5" />
                 <p className="text-white/80 font-body">
                   <strong>Site web trop lent?</strong> Je le rends rapide et responsive.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <ArrowRight size={20} className="text-secondary flex-shrink-0 mt-0.5" />
+                <ShoppingCart size={20} className="text-secondary flex-shrink-0 mt-0.5" />
                 <p className="text-white/80 font-body">
                   <strong>Pas de boutique en ligne?</strong> Je crée un e-commerce qui vend.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <ArrowRight size={20} className="text-secondary flex-shrink-0 mt-0.5" />
+                <Smartphone size={20} className="text-secondary flex-shrink-0 mt-0.5" />
                 <p className="text-white/80 font-body">
                   <strong>Besoin d&apos;une app mobile ou outil interne?</strong> C&apos;est mon domaine.
                 </p>
@@ -58,7 +55,7 @@ export default function Hero() {
               className="btn-animate btn-primary-fx inline-flex items-center gap-2 justify-center rounded-xl bg-primary hover:bg-primary-hover px-8 py-4 font-heading font-semibold text-base md:text-lg tracking-wide transition-colors text-white"
             >
               <Phone size={20} />
-              Appel découverte gratuit (30 min)
+              Démarrer
             </a>
             <p className="text-sm text-white/60 font-body mt-3">
               Pas d&apos;engagement. On discute juste de ton projet.
@@ -84,26 +81,11 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Section Infos Rapides */}
+        {/* Section Infos Rapides : cartes chiffrées, comptent au survol */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-16 border-t border-white/10">
-          <div className="text-center md:text-left">
-            <p className="text-3xl md:text-4xl font-heading font-bold text-secondary">2</p>
-            <p className="text-white/70 font-body text-sm mt-1">
-              Projets livrés avec succès
-            </p>
-          </div>
-          <div className="text-center md:text-left">
-            <p className="text-3xl md:text-4xl font-heading font-bold text-secondary">100%</p>
-            <p className="text-white/70 font-body text-sm mt-1">
-              Clients satisfaits
-            </p>
-          </div>
-          <div className="text-center md:text-left">
-            <p className="text-3xl md:text-4xl font-heading font-bold text-secondary">3/mois</p>
-            <p className="text-white/70 font-body text-sm mt-1">
-              Spots disponibles (limités!)
-            </p>
-          </div>
+          <StatCounter value={2} label="Projets livrés avec succès" />
+          <StatCounter value={100} suffix="%" label="Clients satisfaits" />
+          <StatCounter value={3} suffix="/mois" label="Spots disponibles (limités!)" />
         </div>
       </div>
     </section>

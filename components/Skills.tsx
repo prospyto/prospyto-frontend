@@ -44,8 +44,6 @@ const SOFT_SKILLS = [
   { name: "Communication claire", Icon: MessageCircle },
 ];
 
-const ALL_SKILLS = [...TECHNICAL_SKILLS, ...SOFT_SKILLS];
-
 export default function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-5xl px-6 py-16">
@@ -53,15 +51,37 @@ export default function Skills() {
       <h2 className="mt-3 font-heading font-semibold text-3xl md:text-4xl text-white">
         Compétences
       </h2>
-      <p className="mt-2 text-sm text-white/50 font-body">
-        Fais défiler pour voir toutes les compétences.
-      </p>
 
-      <div className="mt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6">
-        {ALL_SKILLS.map(({ name, Icon }) => (
+      {/* Compétences techniques */}
+      <p className="mt-10 font-heading font-semibold text-sm uppercase tracking-wide text-secondary">
+        Techniques
+      </p>
+      <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        {TECHNICAL_SKILLS.map(({ name, Icon }) => (
           <div
             key={name}
-            className="card-surface snap-start shrink-0 w-[45%] sm:w-[30%] md:w-[23%] p-6 flex flex-col items-center justify-center gap-3 text-center"
+            className="card-surface p-6 flex flex-col items-center justify-center gap-3 text-center"
+          >
+            <div
+              className="w-12 h-12 rounded-full flex items-center justify-center"
+              style={{ background: "rgba(224, 170, 255, 0.12)" }}
+            >
+              <Icon size={22} className="text-secondary" />
+            </div>
+            <span className="text-sm text-white/85 font-body font-medium">{name}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Compétences non-techniques */}
+      <p className="mt-10 font-heading font-semibold text-sm uppercase tracking-wide text-secondary">
+        Non-techniques
+      </p>
+      <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {SOFT_SKILLS.map(({ name, Icon }) => (
+          <div
+            key={name}
+            className="card-surface p-6 flex flex-col items-center justify-center gap-3 text-center"
           >
             <div
               className="w-12 h-12 rounded-full flex items-center justify-center"

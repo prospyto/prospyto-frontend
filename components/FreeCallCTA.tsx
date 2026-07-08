@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Clock, Check, MessageCircle, Mail } from "lucide-react";
+import { Clock, Check, MessageCircle } from "lucide-react";
 import Blob from "./Blob";
 
 export default function FreeCallCTA() {
@@ -93,24 +93,15 @@ export default function FreeCallCTA() {
         {/* Alternative */}
         <div className="mt-8 pt-8 border-t border-white/10">
           <p className="text-white/60 font-body text-sm mb-3">Préfères un contact direct?</p>
-          <div className="flex gap-4">
-            <a
-              href="https://wa.me/22901906856"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-animate inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary/50 hover:bg-secondary/10 text-secondary font-body transition-colors text-sm"
-            >
-              <MessageCircle size={16} />
-              WhatsApp
-            </a>
-            <a
-              href="mailto:prospereazonglahoun@gmail.com"
-              className="btn-animate inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary/50 hover:bg-secondary/10 text-secondary font-body transition-colors text-sm"
-            >
-              <Mail size={16} />
-              Email
-            </a>
-          </div>
+          <a
+            href="https://wa.me/22901906856"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-animate inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary/50 hover:bg-secondary/10 text-secondary font-body transition-colors text-sm"
+          >
+            <MessageCircle size={16} />
+            WhatsApp
+          </a>
         </div>
       </div>
     </section>

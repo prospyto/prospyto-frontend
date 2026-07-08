@@ -74,8 +74,9 @@ export default function About() {
           <div className="space-y-4 text-white/80 font-body leading-relaxed">
             <p>
               Je m&apos;appelle <strong>Prospère Azonglahoun</strong>, je suis basé à 
-              <strong> Cotonou, Bénin</strong>. Autodidacte, j&apos;ai appris en construisant 
-              de vrais projets, pas en lisant des tutoriels YouTube.
+              <strong> Cotonou, Bénin</strong>. J&apos;ai suivi des formations, mais j&apos;ai 
+              surtout appris en autodidacte, en construisant de vrais projets et en testant 
+              ce qui marche vraiment sur le terrain, pas seulement en théorie.
             </p>
             <p>
               J&apos;ai livré <strong>2 projets complexes</strong> avec succès (Swift Africa, 
