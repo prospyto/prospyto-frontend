@@ -62,8 +62,8 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Image */}
-          <div className="relative mx-auto md:mx-0 h-72 sm:h-80 md:h-[32rem] aspect-[3/4] rounded-2xl overflow-hidden">
+          {/* Image : sort légèrement de sa colonne, décalée vers la droite */}
+          <div className="relative mx-auto md:mx-0 md:ml-auto md:translate-x-10 lg:translate-x-16 h-72 sm:h-80 md:h-[32rem] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src="/prospere-photo.jpeg"
               alt="Prospère Azonglahoun"
