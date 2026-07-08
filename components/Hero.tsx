@@ -63,12 +63,12 @@ export default function Hero() {
           </div>
 
           {/* Image */}
-          <div className="relative w-80 h-80 md:w-[26rem] md:h-[26rem] mx-auto md:mx-0">
+          <div className="relative mx-auto md:mx-0 h-72 sm:h-80 md:h-[32rem] aspect-[3/4] rounded-2xl overflow-hidden">
             <Image
-              src="/prospere-photo-nobg.png"
+              src="/prospere-photo.jpeg"
               alt="Prospère Azonglahoun"
               fill
-              className="object-contain"
+              className="object-cover object-top"
               priority
             />
           </div>
