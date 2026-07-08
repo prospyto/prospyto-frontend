@@ -183,6 +183,25 @@ body {
   }
 }
 
+/* ---- Curseur clignotant pour l'effet machine à écrire en boucle ---- */
+.typewriter-caret {
+  display: inline-block;
+  margin-left: 2px;
+  animation: typewriter-blink 1s step-end infinite;
+}
+
+@keyframes typewriter-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-caret {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 /* ---- Animation de balayage lumineux sur le titre du Hero ---- */
 .hero-title-sweep {
   background-image: linear-gradient(

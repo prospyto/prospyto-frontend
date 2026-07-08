@@ -3,10 +3,13 @@ import { Zap, ShoppingCart, Smartphone, Phone } from "lucide-react";
 import Blob from "./Blob";
 import Stars from "./Stars";
 import StatCounter from "./StatCounter";
+import ParticleRing from "./ParticleRing";
+import TypewriterLoop from "./TypewriterLoop";
 
 export default function Hero() {
   return (
     <section className="relative bg-background text-white overflow-hidden">
+      <ParticleRing />
       <Blob color="var(--primary-color)" className="-top-20 -left-20" size={380} />
       <Blob color="var(--secondary-color)" className="top-10 right-0" size={320} />
       <Stars />
@@ -16,8 +19,8 @@ export default function Hero() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Texte */}
           <div>
-            <h1 className="hero-title-sweep font-heading font-bold text-4xl md:text-5xl leading-tight tracking-tight mb-4">
-              Tu as besoin d&apos;un site web, d&apos;une app, ou d&apos;un outil?
+            <h1 className="hero-title-sweep font-heading font-bold text-4xl md:text-5xl leading-tight tracking-tight mb-4 min-h-[2.6em] md:min-h-[2.2em]">
+              <TypewriterLoop text="Tu as besoin d'un site web, d'une app, ou d'un outil?" />
             </h1>
             
             <p className="text-lg text-white/80 font-body mb-6 leading-relaxed">
