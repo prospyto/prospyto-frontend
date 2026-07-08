@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { SiGithub } from "react-icons/si";
+import StaggerGroup from "./StaggerGroup";
 
 type Project = {
   id: string;
@@ -61,7 +62,7 @@ export default function Portfolio() {
           page orientée conversion.
         </p>
 
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <StaggerGroup className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           {PROJECTS.map((proj) => (
             <div
               key={proj.id}
@@ -121,7 +122,7 @@ export default function Portfolio() {
                       href={proj.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-animate btn-primary-fx inline-flex items-center gap-2 rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
+                      className="btn-animate btn-border-scan btn-primary-fx inline-flex items-center gap-2 rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
                     >
                       Voir le projet
                       <ArrowRight size={16} />
@@ -132,7 +133,7 @@ export default function Portfolio() {
                       href={proj.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-animate inline-flex items-center gap-2 rounded-lg border border-primary/50 hover:bg-primary/10 px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
+                      className="btn-animate btn-border-scan inline-flex items-center gap-2 rounded-lg border border-primary/50 hover:bg-primary/10 px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
                     >
                       <SiGithub size={16} />
                       Code
@@ -142,7 +143,7 @@ export default function Portfolio() {
               </div>
             </div>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );

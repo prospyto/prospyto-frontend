@@ -37,7 +37,7 @@ export default function Navbar() {
           ))}
           <a
             href="#appel-gratuit"
-            className="btn-animate btn-primary-fx rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
+            className="btn-animate btn-border-scan btn-primary-fx rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
           >
             Démarrer
           </a>
@@ -72,7 +72,7 @@ export default function Navbar() {
           <a
             href="#appel-gratuit"
             onClick={() => setOpen(false)}
-            className="btn-animate btn-primary-fx text-center rounded-lg bg-primary hover:bg-primary-hover px-4 py-2.5 text-sm font-heading font-semibold text-white transition-colors mt-1"
+            className="btn-animate btn-border-scan btn-primary-fx text-center rounded-lg bg-primary hover:bg-primary-hover px-4 py-2.5 text-sm font-heading font-semibold text-white transition-colors mt-1"
           >
             Démarrer
           </a>

@@ -48,7 +48,7 @@ export default function ReviewForm({ link }: { link: string }) {
             type="button"
             key={n}
             onClick={() => setRating(n)}
-            className="btn-animate leading-none"
+            className="btn-animate btn-border-scan leading-none"
             aria-label={`${n} étoile${n > 1 ? "s" : ""}`}
           >
             <Star
@@ -73,7 +73,7 @@ export default function ReviewForm({ link }: { link: string }) {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-4 btn-animate btn-primary-fx px-4 py-2 rounded-lg text-sm font-body font-medium"
+        className="mt-4 btn-animate btn-border-scan btn-primary-fx px-4 py-2 rounded-lg text-sm font-body font-medium"
         style={{ background: "var(--primary-color)", color: "#fff" }}
       >
         {status === "sending" ? "Envoi…" : "Envoyer mon avis"}

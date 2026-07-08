@@ -55,7 +55,7 @@ export default function Hero() {
             {/* CTA Principal */}
             <a
               href="#appel-gratuit"
-              className="btn-animate btn-primary-fx inline-flex items-center gap-2 justify-center rounded-xl bg-primary hover:bg-primary-hover px-8 py-4 font-heading font-semibold text-base md:text-lg tracking-wide transition-colors text-white"
+              className="btn-animate btn-border-scan btn-primary-fx inline-flex items-center gap-2 justify-center rounded-xl bg-primary hover:bg-primary-hover px-8 py-4 font-heading font-semibold text-base md:text-lg tracking-wide transition-colors text-white"
             >
               <Phone size={20} />
               Démarrer

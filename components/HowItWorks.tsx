@@ -1,5 +1,6 @@
 import { Phone, ClipboardList, Settings, Rocket } from "lucide-react";
 import Blob from "./Blob";
+import StaggerGroup from "./StaggerGroup";
 
 export default function HowItWorks() {
   const steps = [
@@ -48,11 +49,11 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {steps.map((step) => (
             <div
               key={step.number}
-              className="relative p-6 rounded-2xl border border-white/10 hover:border-secondary/40 transition-colors"
+              className="relative p-6 rounded-2xl border border-white/10 hover:border-secondary/40 transition-colors h-full"
               style={{ background: "#2d0a52" }}
             >
               {/* Numéro */}
@@ -72,7 +73,7 @@ export default function HowItWorks() {
               </div>
             </div>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );

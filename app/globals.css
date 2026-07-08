@@ -239,6 +239,74 @@ body {
   }
 }
 
+/* ---- Bordure scannee au survol : un trait lumineux fait le tour du bouton ---- */
+@property --scan-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.btn-border-scan {
+  position: relative;
+}
+
+.btn-border-scan::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--scan-angle),
+    transparent 0deg,
+    var(--secondary-color) 25deg,
+    transparent 55deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.btn-border-scan:hover::before {
+  opacity: 1;
+  animation: btn-scan-rotate 1.4s linear infinite;
+}
+
+@keyframes btn-scan-rotate {
+  to {
+    --scan-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-border-scan::before {
+    display: none;
+  }
+}
+
+/* ---- Apparition en cascade pour les grilles (etapes, competences, projets) ---- */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.stagger-item.stagger-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ---- Animation des boutons : effet tactile (scale + ombre) sur tous les boutons ---- */
 .btn-animate {
   transition: transform 0.2s ease, box-shadow 0.2s ease;

@@ -127,7 +127,7 @@ export default function TrackPage() {
                   href={data.whatsapp_link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-animate btn-primary-fx px-4 py-2.5 rounded-lg text-sm font-body font-medium"
+                  className="btn-animate btn-border-scan btn-primary-fx px-4 py-2.5 rounded-lg text-sm font-body font-medium"
                   style={{ background: "#10b981", color: "#fff" }}
                 >
                   Discuter sur WhatsApp
@@ -135,7 +135,7 @@ export default function TrackPage() {
               )}
               <Link
                 href="/#portfolio"
-                className="btn-animate px-4 py-2.5 rounded-lg text-sm font-body font-medium"
+                className="btn-animate btn-border-scan px-4 py-2.5 rounded-lg text-sm font-body font-medium"
                 style={{ background: "rgba(255,255,255,0.08)", color: "#fff" }}
               >
                 Voir le portfolio

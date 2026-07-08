@@ -14,6 +14,7 @@ import {
   SiGit,
 } from "react-icons/si";
 import { PenTool, Palette, Users, Puzzle, Compass, MessageCircle } from "lucide-react";
+import StaggerGroup from "./StaggerGroup";
 
 const TECHNICAL_SKILLS = [
   { name: "Next.js", Icon: SiNextdotjs },
@@ -56,11 +57,11 @@ export default function Skills() {
       <p className="mt-10 font-heading font-semibold text-sm uppercase tracking-wide text-secondary">
         Techniques
       </p>
-      <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <StaggerGroup staggerMs={40} className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {TECHNICAL_SKILLS.map(({ name, Icon }) => (
           <div
             key={name}
-            className="card-surface p-6 flex flex-col items-center justify-center gap-3 text-center"
+            className="card-surface p-6 flex flex-col items-center justify-center gap-3 text-center h-full"
           >
             <div
               className="w-12 h-12 rounded-full flex items-center justify-center"
@@ -71,17 +72,17 @@ export default function Skills() {
             <span className="text-sm text-white/85 font-body font-medium">{name}</span>
           </div>
         ))}
-      </div>
+      </StaggerGroup>
 
       {/* Compétences non-techniques */}
       <p className="mt-10 font-heading font-semibold text-sm uppercase tracking-wide text-secondary">
         Non-techniques
       </p>
-      <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <StaggerGroup staggerMs={60} className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
         {SOFT_SKILLS.map(({ name, Icon }) => (
           <div
             key={name}
-            className="card-surface p-6 flex flex-col items-center justify-center gap-3 text-center"
+            className="card-surface p-6 flex flex-col items-center justify-center gap-3 text-center h-full"
           >
             <div
               className="w-12 h-12 rounded-full flex items-center justify-center"
@@ -92,7 +93,7 @@ export default function Skills() {
             <span className="text-sm text-white/85 font-body font-medium">{name}</span>
           </div>
         ))}
-      </div>
+      </StaggerGroup>
     </section>
   );
 }
