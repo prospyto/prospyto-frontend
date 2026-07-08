@@ -20,7 +20,7 @@ export default function Hero() {
           {/* Texte */}
           <div>
             <div className="hero-title-container mb-4">
-              <h1 className="hero-title-fixed font-heading font-bold text-4xl md:text-5xl leading-tight tracking-tight">
+              <h1 className="hero-title-sweep font-heading font-bold text-4xl md:text-5xl leading-tight tracking-tight">
                 <TypewriterLoop text="Tu as besoin d'un site web, d'une app, ou d'un outil?" />
               </h1>
             </div>
