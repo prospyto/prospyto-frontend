@@ -74,10 +74,10 @@ export default function About() {
           </h3>
           <div className="space-y-4 text-white/80 font-body leading-relaxed">
             <p>
-              Je m&apos;appelle <strong>Prospère Azonglahoun</strong>, je suis basé à 
-              <strong> Cotonou, Bénin</strong>. J&apos;ai suivi des formations, mais j&apos;ai 
-              surtout appris en autodidacte, en construisant de vrais projets et en testant 
-              ce qui marche vraiment sur le terrain, pas seulement en théorie.
+              Je m&apos;appelle <strong>Prospère Azonglahoun</strong>. J&apos;ai suivi des 
+              formations, mais j&apos;ai surtout appris en autodidacte, en construisant de 
+              vrais projets et en testant ce qui marche vraiment sur le terrain, pas 
+              seulement en théorie.
             </p>
             <p>
               Ce sont des <strong>projets que j&apos;ai initiés et réalisés moi-même</strong>, 

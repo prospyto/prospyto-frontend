@@ -1,15 +1,12 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { SiGithub } from "react-icons/si";
 
 type Project = {
   id: string;
   title: string;
   tagline: string;
-  description: string;
-  fullDescription?: string;
+  pitch: string;
   tags: string[];
   link?: string;
   github?: string;
@@ -21,11 +18,9 @@ const PROJECTS: Project[] = [
   {
     id: "swift-africa",
     title: "Swift Africa",
-    tagline: "Achetez. Vendez. Livrez.",
-    description:
-      "Plateforme de commerce sécurisé pour l'Afrique de l'Ouest : l'argent de l'acheteur reste bloqué en escrow jusqu'à la livraison confirmée par code OTP, pour éliminer les arnaques entre acheteurs, vendeurs et livreurs.",
-    fullDescription:
-      "Plateforme de commerce sécurisé avec paiement bloqué en escrow, GPS temps réel pour le suivi de livraison, et messagerie intégrée entre acheteur, vendeur et livreur.",
+    tagline: "Achetez. Vendez. Livrez. En toute sécurité.",
+    pitch:
+      "L'argent de l'acheteur reste bloqué jusqu'à la livraison confirmée. Zéro arnaque, suivi de livraison en temps réel.",
     tags: ["Next.js", "Django", "Escrow", "GPS temps réel", "PostgreSQL"],
     link: "https://swift-africa-app.vercel.app/",
     github: "https://github.com/prospyto/swift-africa-app-front",
@@ -35,11 +30,9 @@ const PROJECTS: Project[] = [
   {
     id: "prospyto-dev",
     title: "Prospyto.dev",
-    tagline: "Mon Portfolio Personnel",
-    description:
-      "Conception et développement de mon site portfolio professionnel. Une plateforme rapide, responsive et optimisée pour la conversion de clients.",
-    fullDescription:
-      "Mon portfolio personnel : présentation de mes projets avec modal détails, compétences techniques et non-techniques, et formulaire de contact.",
+    tagline: "Mon portfolio personnel",
+    pitch:
+      "Un site rapide, clair, pensé pour convertir : chaque visiteur voit en quelques secondes ce que je sais construire.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     link: "https://prospytodev.vercel.app/",
     github: "https://github.com/prospyto/prospyto-frontend",
@@ -49,10 +42,8 @@ const PROJECTS: Project[] = [
     id: "calin-eternel",
     title: "Câlin Éternel",
     tagline: "Challenge Saint-Valentin 2026",
-    description:
-      "Landing page de vente conçue pour un challenge design : storytelling produit, urgence (compte à rebours), preuve sociale et tunnel d'achat pensés pour maximiser la conversion.",
-    fullDescription:
-      "Landing page de vente créée pour un challenge design : storytelling produit, compte à rebours, preuve sociale et tunnel d'achat orienté conversion.",
+    pitch:
+      "Landing page de vente : storytelling, urgence, preuve sociale. Pensée pour transformer un visiteur en acheteur.",
     tags: ["Landing page", "Copywriting", "Conversion", "Tailwind CSS"],
     link: "https://ste-valentin-challenge.vercel.app/",
     image: "/ste-valentin-challenge.jpeg",
@@ -60,12 +51,6 @@ const PROJECTS: Project[] = [
 ];
 
 export default function Portfolio() {
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
-
-  const project = selectedProject
-    ? PROJECTS.find((p) => p.id === selectedProject)
-    : null;
-
   return (
     <section id="projects" className="section-tint mx-auto max-w-5xl px-6 py-20">
       <div className="relative z-10">
@@ -80,21 +65,20 @@ export default function Portfolio() {
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           {PROJECTS.map((proj) => (
-            <button
+            <div
               key={proj.id}
               id={`project-${proj.id}`}
-              onClick={() => setSelectedProject(proj.id)}
-              className={`card-surface group overflow-hidden block text-left cursor-pointer scroll-mt-24 ${
+              className={`card-surface overflow-hidden scroll-mt-24 ${
                 proj.featured ? "md:col-span-2 ring-1 ring-secondary/40" : ""
               }`}
             >
-              <div className="relative h-48 w-full bg-black/30 overflow-hidden rounded-t-2xl">
+              <div className="relative h-56 md:h-64 w-full bg-black/30 overflow-hidden rounded-t-2xl">
                 {proj.image ? (
                   <Image
                     src={proj.image}
                     alt={proj.title}
                     fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-top"
                   />
                 ) : (
                   <div className="h-full w-full flex items-center justify-center text-white/30 text-xs font-body">
@@ -108,16 +92,17 @@ export default function Portfolio() {
                 )}
               </div>
 
-              <div className="p-5">
-                <p className="font-heading font-semibold text-lg text-white">
+              <div className="p-6">
+                <p className="font-heading font-semibold text-xl text-white">
                   {proj.title}
                 </p>
-                <p className="text-xs text-secondary font-body mt-0.5">
+                <p className="text-sm text-secondary font-body mt-0.5">
                   {proj.tagline}
                 </p>
-                <p className="mt-3 text-sm text-white/65 font-body leading-relaxed line-clamp-2">
-                  {proj.description}
+                <p className="mt-3 text-sm text-white/70 font-body leading-relaxed">
+                  {proj.pitch}
                 </p>
+
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {proj.tags.map((tag) => (
                     <span
@@ -128,106 +113,36 @@ export default function Portfolio() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-4 flex items-center gap-1 text-xs text-primary font-heading">
-                  Cliquez pour voir plus
-                  <ArrowRight size={14} />
-                </p>
+
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {proj.link && (
+                    <a
+                      href={proj.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-animate btn-primary-fx inline-flex items-center gap-2 rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
+                    >
+                      Voir le projet
+                      <ArrowRight size={16} />
+                    </a>
+                  )}
+                  {proj.github && (
+                    <a
+                      href={proj.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-animate inline-flex items-center gap-2 rounded-lg border border-primary/50 hover:bg-primary/10 px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
+                    >
+                      <SiGithub size={16} />
+                      Code
+                    </a>
+                  )}
+                </div>
               </div>
-            </button>
+            </div>
           ))}
         </div>
       </div>
-
-      {/* Modal Détails */}
-      {project && (
-        <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedProject(null)}
-        >
-          <div
-            className="bg-background rounded-2xl border border-white/10 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header Image */}
-            {project.image && (
-              <div className="relative h-64 w-full bg-black/30">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover object-top"
-                />
-              </div>
-            )}
-
-            {/* Contenu */}
-            <div className="p-8">
-              <h3 className="font-heading font-bold text-2xl md:text-3xl text-white">
-                {project.title}
-              </h3>
-              <p className="mt-2 text-secondary font-heading text-lg">
-                {project.tagline}
-              </p>
-
-              {/* Description complète */}
-              <p className="mt-6 text-white/80 font-body leading-relaxed">
-                {project.fullDescription || project.description}
-              </p>
-
-              {/* Technologies */}
-              <div className="mt-8">
-                <h4 className="font-heading font-semibold text-sm uppercase tracking-wide text-secondary mb-3">
-                  Technologies
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 rounded-full bg-primary/20 text-secondary text-xs font-body"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Liens */}
-              <div className="mt-8 flex flex-wrap gap-3">
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-animate btn-primary-fx inline-flex items-center gap-2 rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
-                  >
-                    Voir la démo
-                    <ArrowRight size={16} />
-                  </a>
-                )}
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-animate inline-flex items-center gap-2 rounded-lg border border-primary/50 hover:bg-primary/10 px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
-                  >
-                    Code GitHub
-                    <ArrowRight size={16} />
-                  </a>
-                )}
-              </div>
-
-              {/* Fermer */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="btn-animate mt-8 w-full py-2 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 hover:text-white transition-colors text-sm font-body"
-              >
-                Fermer (Esc)
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
