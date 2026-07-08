@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import StaggerGroup from "./StaggerGroup";
+
+const GITHUB_PROFILE = "https://github.com/prospyto";
 
 type Project = {
   id: string;
@@ -10,7 +11,6 @@ type Project = {
   pitch: string;
   tags: string[];
   link?: string;
-  github?: string;
   image?: string;
   featured?: boolean;
 };
@@ -24,7 +24,6 @@ const PROJECTS: Project[] = [
       "L'argent de l'acheteur reste bloqué jusqu'à la livraison confirmée. Zéro arnaque, suivi de livraison en temps réel.",
     tags: ["Next.js", "Django", "Escrow", "GPS temps réel", "PostgreSQL"],
     link: "https://swift-africa-app.vercel.app/",
-    github: "https://github.com/prospyto/swift-africa-app-front",
     image: "/portfolio-swift-africa.jpeg",
     featured: true,
   },
@@ -36,7 +35,6 @@ const PROJECTS: Project[] = [
       "Un site rapide, clair, pensé pour convertir : chaque visiteur voit en quelques secondes ce que je sais construire.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     link: "https://prospytodev.vercel.app/",
-    github: "https://github.com/prospyto/prospyto-frontend",
   },
   {
     id: "calin-eternel",
@@ -125,18 +123,6 @@ export default function Portfolio() {
                       className="btn-animate btn-border-scan btn-primary-fx inline-flex items-center gap-2 rounded-lg bg-primary hover:bg-primary-hover px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
                     >
                       Voir le projet
-                      <ArrowRight size={16} />
-                    </a>
-                  )}
-                  {proj.github && (
-                    <a
-                      href={proj.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-animate btn-border-scan inline-flex items-center gap-2 rounded-lg border border-primary/50 hover:bg-primary/10 px-4 py-2 text-sm font-heading font-semibold text-white transition-colors"
-                    >
-                      <SiGithub size={16} />
-                      Code
                     </a>
                   )}
                 </div>
@@ -144,6 +130,18 @@ export default function Portfolio() {
             </div>
           ))}
         </StaggerGroup>
+
+        <div className="mt-10 text-center">
+          <a
+            href={GITHUB_PROFILE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-animate btn-border-scan inline-flex items-center gap-2 rounded-lg border border-primary/50 hover:bg-primary/10 px-5 py-2.5 text-sm font-heading font-semibold text-white transition-colors"
+          >
+            <SiGithub size={16} />
+            Voir mon profil GitHub
+          </a>
+        </div>
       </div>
     </section>
   );
