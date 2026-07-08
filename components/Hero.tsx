@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Zap, ShoppingCart, Smartphone, Phone } from "lucide-react";
+import { Zap, ShoppingCart, Smartphone } from "lucide-react";
 import Blob from "./Blob";
 import Stars from "./Stars";
 import StatCounter from "./StatCounter";
@@ -73,7 +73,6 @@ export default function Hero() {
               href="#appel-gratuit"
               className="btn-animate btn-border-scan btn-primary-fx inline-flex items-center gap-2 justify-center rounded-xl bg-primary hover:bg-primary-hover px-8 py-4 font-heading font-semibold text-base md:text-lg tracking-wide transition-colors text-white"
             >
-              <Phone size={20} />
               Démarrer
             </a>
             <p className="text-sm text-white/60 font-body mt-3">
