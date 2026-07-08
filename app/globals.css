@@ -124,12 +124,137 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s cubic-bezier(0.32, 0.72, 0.3, 1), transform 0.6s cubic-bezier(0.32, 0.72, 0.3, 1);
 }
 
 .reveal.reveal-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ---- Animations Premium pour Boutons ---- */
+button, a[role="button"], .btn {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Boutons primaires avec glow subtle */
+.bg-primary {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.bg-primary:hover {
+  box-shadow: 0 0 20px rgba(122, 44, 191, 0.4);
+  transform: translateY(-2px);
+}
+
+.bg-primary:active {
+  transform: translateY(0);
+}
+
+/* Boutons secondaires */
+.border-secondary {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.border-secondary:hover {
+  background-color: rgba(224, 170, 255, 0.05);
+  border-color: rgba(224, 170, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ---- Animations Premium pour Titres (Fade + Slide) ---- */
+h1, h2, h3, .font-heading {
+  transition: all 0.4s cubic-bezier(0.32, 0.72, 0.3, 1);
+}
+
+/* ---- Animations de Cartes avec Stagger ---- */
+.card-surface, [style*="background: #2d0a52"] {
+  transition: all 0.3s cubic-bezier(0.32, 0.72, 0.3, 1);
+}
+
+.card-surface:hover, [style*="background: #2d0a52"]:hover {
+  border-color: rgba(224, 170, 255, 0.6);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(122, 44, 191, 0.15);
+}
+
+/* ---- Animations d'Icônes (Subtle Rotation + Scale) ---- */
+svg, .lucide {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Icônes dans les cartes au hover */
+.card-surface:hover svg, 
+[style*="background: #2d0a52"]:hover svg {
+  transform: scale(1.1) rotate(5deg);
+  color: var(--secondary-color);
+}
+
+/* ---- Stagger Animation pour Listes ---- */
+.space-y-3 > div, 
+.space-y-4 > p,
+.grid > div {
+  animation: stagger-fade-in 0.6s cubic-bezier(0.32, 0.72, 0.3, 1) backwards;
+}
+
+.space-y-3 > div:nth-child(1) { animation-delay: 0.1s; }
+.space-y-3 > div:nth-child(2) { animation-delay: 0.2s; }
+.space-y-3 > div:nth-child(3) { animation-delay: 0.3s; }
+
+.grid > div:nth-child(1) { animation-delay: 0.1s; }
+.grid > div:nth-child(2) { animation-delay: 0.2s; }
+.grid > div:nth-child(3) { animation-delay: 0.3s; }
+.grid > div:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes stagger-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Input Focus Glow ---- */
+input:focus {
+  box-shadow: 0 0 16px rgba(224, 170, 255, 0.25);
+  transition: box-shadow 0.3s ease;
+}
+
+/* ---- CTA Pulse Subtle ---- */
+.bg-primary {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    box-shadow: 0 0 0px rgba(122, 44, 191, 0);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(122, 44, 191, 0.3);
+  }
+}
+
+.bg-primary:hover {
+  animation: none;
+}
+
+/* ---- Respect des préférences d'accessibilité ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  button, a[role="button"], .card-surface, [style*="background: #2d0a52"] {
+    transform: none !important;
+  }
 }
 
 /* Curseur personnalisé actif : masque le curseur natif hors mobile */
