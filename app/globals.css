@@ -260,14 +260,14 @@ input:focus {
 /* ---- Hero Title Container (Hauteur FIXE - zéro layout shift) ---- */
 .hero-title-container {
   display: block;
-  height: 140px;  /* Mobile: hauteur fixe pour ~3 lignes de texte */
+  height: 200px;  /* Mobile: hauteur fixe pour 4 lignes de texte */
   overflow: hidden;
   width: 100%;
 }
 
 @media (min-width: 768px) {
   .hero-title-container {
-    height: 120px;  /* Desktop: hauteur fixe pour ~2 lignes de texte */
+    height: 160px;  /* Desktop: hauteur fixe pour 2-3 lignes de texte */
   }
 }
 
