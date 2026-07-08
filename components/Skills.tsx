@@ -10,10 +10,9 @@ import {
   SiNodedotjs,
   SiExpress,
   SiTypescript,
-  SiMongodb,
   SiGit,
 } from "react-icons/si";
-import { PenTool, Palette, Users, Puzzle, Compass, MessageCircle } from "lucide-react";
+import { Palette, Users, Puzzle, Compass, MessageCircle } from "lucide-react";
 import StaggerGroup from "./StaggerGroup";
 
 const TECHNICAL_SKILLS = [
@@ -26,14 +25,12 @@ const TECHNICAL_SKILLS = [
   { name: "TypeScript", Icon: SiTypescript },
   { name: "Python", Icon: SiPython },
   { name: "PostgreSQL", Icon: SiPostgresql },
-  { name: "MongoDB", Icon: SiMongodb },
   { name: "Tailwind CSS", Icon: SiTailwindcss },
   { name: "Git", Icon: SiGit },
   { name: "Figma", Icon: SiFigma },
-  // Pas de logo officiel Canva ou Pixellab dans la librairie utilisée :
-  // icônes génériques plutôt que des logos approximatifs.
+  // Pas de logo officiel Canva dans la librairie utilisée :
+  // icône générique plutôt qu'un logo approximatif.
   { name: "Canva", Icon: Palette },
-  { name: "Pixellab", Icon: PenTool },
 ];
 
 // Compétences non-techniques : traits de savoir-être courants et pertinents

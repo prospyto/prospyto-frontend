@@ -7,7 +7,7 @@ export default function About() {
     <section id="about" className="relative mx-auto max-w-5xl px-6 py-20 overflow-hidden">
       <Blob color="var(--secondary-color)" className="-bottom-24 -right-24" size={340} />
       <div className="relative z-10">
-        <span className="section-eyebrow">Pourquoi choisir Prospère?</span>
+        <span className="section-eyebrow">Pourquoi collaborer avec moi?</span>
         <h2 className="mt-3 font-heading font-semibold text-3xl md:text-4xl text-white">
           Tu cherches quelqu&apos;un de sérieux
         </h2>

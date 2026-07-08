@@ -353,13 +353,7 @@ input:focus {
   }
 }
 
-/* ---- Bordure scannee au survol : un trait lumineux fait le tour du bouton ---- */
-@property --scan-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
+/* ---- Bordure scannee au survol : un trait lumineux balaie le bouton de gauche a droite ---- */
 .btn-border-scan {
   position: relative;
 }
@@ -370,12 +364,14 @@ input:focus {
   inset: -1.5px;
   border-radius: inherit;
   padding: 1.5px;
-  background: conic-gradient(
-    from var(--scan-angle),
-    transparent 0deg,
-    var(--secondary-color) 25deg,
-    transparent 55deg
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--secondary-color) 50%,
+    transparent 100%
   );
+  background-size: 250% 100%;
+  background-position: -100% 0;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -386,12 +382,15 @@ input:focus {
 
 .btn-border-scan:hover::before {
   opacity: 1;
-  animation: btn-scan-rotate 1.4s linear infinite;
+  animation: btn-scan-sweep 1.2s linear infinite;
 }
 
-@keyframes btn-scan-rotate {
+@keyframes btn-scan-sweep {
+  from {
+    background-position: -100% 0;
+  }
   to {
-    --scan-angle: 360deg;
+    background-position: 200% 0;
   }
 }
 

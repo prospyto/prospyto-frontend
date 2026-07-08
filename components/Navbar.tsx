@@ -20,8 +20,11 @@ export default function Navbar() {
       style={{ background: "rgba(28, 5, 56, 0.75)", borderBottom: "1px solid rgba(224,170,255,0.12)" }}
     >
       <nav className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-        <a href="#" className="font-heading font-bold text-white text-lg">
-          Prosp<span className="text-secondary">ère</span>
+        <a href="#" className="flex items-center gap-1 font-heading font-bold text-white text-lg">
+          <span className="underline decoration-secondary underline-offset-4">prospyto</span>
+          <span className="text-sm px-1.5 py-0.5 rounded border border-secondary/50 text-secondary">
+            dev
+          </span>
         </a>
 
         {/* Liens desktop */}

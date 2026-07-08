@@ -17,14 +17,28 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-4xl px-6 py-24 md:py-32">
         {/* Section Supérieure: Texte + Image */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Texte */}
-          <div>
+          {/* Titre : premier sur mobile ET desktop */}
+          <div className="md:col-start-1 md:row-start-1">
             <div className="hero-title-container mb-4">
               <h1 className="hero-title-sweep font-heading font-bold text-4xl md:text-5xl leading-tight tracking-tight">
                 <TypewriterLoop text="Tu as besoin d'un site web, d'une app, ou d'un outil?" />
               </h1>
             </div>
-            
+          </div>
+
+          {/* Image : sur mobile, juste après le titre. Sur desktop, colonne de droite sur toute la hauteur */}
+          <div className="md:col-start-2 md:row-start-1 md:row-span-2 relative mx-auto md:mx-0 md:ml-auto md:translate-x-10 lg:translate-x-16 h-72 sm:h-80 md:h-[32rem] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+            <Image
+              src="/prospere-photo.jpeg"
+              alt="Prospère Azonglahoun"
+              fill
+              className="object-cover object-top"
+              priority
+            />
+          </div>
+
+          {/* Reste du texte : après l'image sur mobile, sous le titre sur desktop */}
+          <div className="md:col-start-1 md:row-start-2">
             <p className="text-lg text-white/80 font-body mb-6 leading-relaxed">
               Je suis <strong>Prospère</strong>, développeur Full Stack, ton allié pour 
               transformer une idée en produit qui marche. Je construis des 
@@ -65,17 +79,6 @@ export default function Hero() {
             <p className="text-sm text-white/60 font-body mt-3">
               Pas d&apos;engagement. On discute juste de ton projet.
             </p>
-          </div>
-
-          {/* Image : sort légèrement de sa colonne, décalée vers la droite */}
-          <div className="relative mx-auto md:mx-0 md:ml-auto md:translate-x-10 lg:translate-x-16 h-72 sm:h-80 md:h-[32rem] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
-            <Image
-              src="/prospere-photo.jpeg"
-              alt="Prospère Azonglahoun"
-              fill
-              className="object-cover object-top"
-              priority
-            />
           </div>
         </div>
 
