@@ -257,17 +257,17 @@ input:focus {
   }
 }
 
-/* ---- Hero Title Container (Empêche layout shift du Typewriter) ---- */
+/* ---- Hero Title Container (Hauteur FIXE - zéro layout shift) ---- */
 .hero-title-container {
   display: block;
-  min-height: 7.2rem; /* 4 lignes de texte max */
+  height: 140px;  /* Mobile: hauteur fixe pour ~3 lignes de texte */
   overflow: hidden;
   width: 100%;
 }
 
 @media (min-width: 768px) {
   .hero-title-container {
-    min-height: 5.5rem; /* 2 lignes sur desktop */
+    height: 120px;  /* Desktop: hauteur fixe pour ~2 lignes de texte */
   }
 }
 
