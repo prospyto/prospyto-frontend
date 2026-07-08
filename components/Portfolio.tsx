@@ -14,22 +14,10 @@ type Project = {
   link?: string;
   github?: string;
   image?: string;
+  featured?: boolean;
 };
 
 const PROJECTS: Project[] = [
-  {
-    id: "prospyto-dev",
-    title: "Prospyto.dev",
-    tagline: "Mon Portfolio Personnel",
-    description:
-      "Conception et développement de mon site portfolio professionnel. Une plateforme rapide, responsive et optimisée pour la conversion de clients.",
-    fullDescription:
-      "Conception et développement de mon portfolio professionnel, une plateforme optimisée pour showcase mes compétences et projets réalisés. L&apos;objectif était de créer un site rapide, responsive et convertisseur intégrant une présentation claire des projets avec modal détails, système de compétences (techniques + non-techniques), et formulaire de contact compact. Utilise les meilleures pratiques de performance et UX.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Framer Motion"],
-    link: "https://prospytodev.vercel.app/",
-    github: "https://github.com/prospyto/prospyto-frontend",
-    image: "/prospyto-portfolio.jpeg",
-  },
   {
     id: "swift-africa",
     title: "Swift Africa",
@@ -37,11 +25,25 @@ const PROJECTS: Project[] = [
     description:
       "Plateforme de commerce sécurisé pour l'Afrique de l'Ouest : l'argent de l'acheteur reste bloqué en escrow jusqu'à la livraison confirmée par code OTP, pour éliminer les arnaques entre acheteurs, vendeurs et livreurs.",
     fullDescription:
-      "Plateforme de commerce sécurisé pour l'Afrique de l'Ouest : l'argent de l'acheteur reste bloqué en escrow jusqu'à la livraison confirmée par code OTP, pour éliminer les arnaques entre acheteurs, vendeurs et livreurs. Intégration de GPS temps réel, système de notation et messaging en temps réel.",
+      "Plateforme de commerce sécurisé avec paiement bloqué en escrow, GPS temps réel pour le suivi de livraison, et messagerie intégrée entre acheteur, vendeur et livreur.",
     tags: ["Next.js", "Django", "Escrow", "GPS temps réel", "PostgreSQL"],
     link: "https://swift-africa-app.vercel.app/",
     github: "https://github.com/prospyto/swift-africa-app-front",
     image: "/portfolio-swift-africa.jpeg",
+    featured: true,
+  },
+  {
+    id: "prospyto-dev",
+    title: "Prospyto.dev",
+    tagline: "Mon Portfolio Personnel",
+    description:
+      "Conception et développement de mon site portfolio professionnel. Une plateforme rapide, responsive et optimisée pour la conversion de clients.",
+    fullDescription:
+      "Mon portfolio personnel : présentation de mes projets avec modal détails, compétences techniques et non-techniques, et formulaire de contact.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    link: "https://prospytodev.vercel.app/",
+    github: "https://github.com/prospyto/prospyto-frontend",
+    image: "/prospyto-portfolio.jpeg",
   },
   {
     id: "calin-eternel",
@@ -50,7 +52,7 @@ const PROJECTS: Project[] = [
     description:
       "Landing page de vente conçue pour un challenge design : storytelling produit, urgence (compte à rebours), preuve sociale et tunnel d'achat pensés pour maximiser la conversion.",
     fullDescription:
-      "Landing page de vente conçue pour un challenge design : storytelling produit, urgence (compte à rebours), preuve sociale et tunnel d'achat pensés pour maximiser la conversion. Conversion optimisée avec copywriting percutant et call-to-action clairs.",
+      "Landing page de vente créée pour un challenge design : storytelling produit, compte à rebours, preuve sociale et tunnel d'achat orienté conversion.",
     tags: ["Landing page", "Copywriting", "Conversion", "Tailwind CSS"],
     link: "https://ste-valentin-challenge.vercel.app/",
     image: "/ste-valentin-challenge.jpeg",
@@ -80,10 +82,13 @@ export default function Portfolio() {
           {PROJECTS.map((proj) => (
             <button
               key={proj.id}
+              id={`project-${proj.id}`}
               onClick={() => setSelectedProject(proj.id)}
-              className="card-surface group overflow-hidden block text-left cursor-pointer"
+              className={`card-surface group overflow-hidden block text-left cursor-pointer scroll-mt-24 ${
+                proj.featured ? "md:col-span-2 ring-1 ring-secondary/40" : ""
+              }`}
             >
-              <div className="relative h-40 w-full bg-black/30 overflow-hidden rounded-t-2xl">
+              <div className="relative h-48 w-full bg-black/30 overflow-hidden rounded-t-2xl">
                 {proj.image ? (
                   <Image
                     src={proj.image}
@@ -96,13 +101,11 @@ export default function Portfolio() {
                     Aperçu à venir
                   </div>
                 )}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(28,5,56,0.95), transparent 60%)",
-                  }}
-                />
+                {proj.featured && (
+                  <span className="absolute top-3 left-3 text-[11px] px-2.5 py-1 rounded-full bg-secondary text-[#1c0538] font-heading font-semibold">
+                    Projet phare
+                  </span>
+                )}
               </div>
 
               <div className="p-5">
@@ -112,7 +115,7 @@ export default function Portfolio() {
                 <p className="text-xs text-secondary font-body mt-0.5">
                   {proj.tagline}
                 </p>
-                <p className="mt-3 text-sm text-white/65 font-body leading-relaxed line-clamp-3">
+                <p className="mt-3 text-sm text-white/65 font-body leading-relaxed line-clamp-2">
                   {proj.description}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-1.5">

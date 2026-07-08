@@ -1,4 +1,5 @@
 import { Zap, Target, Gem, Handshake } from "lucide-react";
+import Link from "next/link";
 import Blob from "./Blob";
 
 export default function About() {
@@ -79,9 +80,14 @@ export default function About() {
               ce qui marche vraiment sur le terrain, pas seulement en théorie.
             </p>
             <p>
-              J&apos;ai livré <strong>2 projets complexes</strong> avec succès (Swift Africa, 
-              Câlin Éternel). Mes clients sont satisfaits. Les délais? Respectés. 
-              Le code? Maintenable.
+              Ce sont des <strong>projets que j&apos;ai initiés et réalisés moi-même</strong>, 
+              pas des commandes clients, pour prouver concrètement ce que je sais construire. 
+              Le plus abouti est{" "}
+              <Link href="#project-swift-africa" className="text-secondary underline underline-offset-4 hover:text-white transition-colors">
+                Swift Africa
+              </Link>
+              , une plateforme complète de commerce sécurisé avec paiement bloqué en escrow. 
+              J&apos;ai aussi réalisé Câlin Éternel, une landing page pensée pour la conversion.
             </p>
             <p>
               Je me spécialise dans Next.js, Django, PostgreSQL, les techs modernes 
