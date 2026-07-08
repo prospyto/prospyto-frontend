@@ -36,7 +36,6 @@ const PROJECTS: Project[] = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     link: "https://prospytodev.vercel.app/",
     github: "https://github.com/prospyto/prospyto-frontend",
-    image: "/prospyto-portfolio.jpeg",
   },
   {
     id: "calin-eternel",
@@ -46,7 +45,6 @@ const PROJECTS: Project[] = [
       "Landing page de vente : storytelling, urgence, preuve sociale. Pensée pour transformer un visiteur en acheteur.",
     tags: ["Landing page", "Copywriting", "Conversion", "Tailwind CSS"],
     link: "https://ste-valentin-challenge.vercel.app/",
-    image: "/ste-valentin-challenge.jpeg",
   },
 ];
 
@@ -72,13 +70,16 @@ export default function Portfolio() {
                 proj.featured ? "md:col-span-2 ring-1 ring-secondary/40" : ""
               }`}
             >
-              <div className="relative h-56 md:h-64 w-full bg-black/30 overflow-hidden rounded-t-2xl">
+              <div
+                className="relative h-64 md:h-72 w-full overflow-hidden rounded-t-2xl flex items-center justify-center"
+                style={{ background: "#1c0538" }}
+              >
                 {proj.image ? (
                   <Image
                     src={proj.image}
                     alt={proj.title}
                     fill
-                    className="object-cover object-top"
+                    className="object-contain"
                   />
                 ) : (
                   <div className="h-full w-full flex items-center justify-center text-white/30 text-xs font-body">
