@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import About from "@/components/About";
@@ -10,6 +11,7 @@ import Reveal from "@/components/Reveal";
 export default function Home() {
   return (
     <main>
+      <Navbar />
       <Hero />
       <Reveal>
         <HowItWorks />

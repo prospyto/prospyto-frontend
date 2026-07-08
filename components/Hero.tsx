@@ -64,20 +64,13 @@ export default function Hero() {
 
           {/* Image */}
           <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto md:mx-0">
-            <div
-              className="absolute inset-0 rounded-full blur-3xl opacity-60 scale-110"
-              style={{ background: "var(--secondary-color)" }}
-              aria-hidden
+            <Image
+              src="/prospere-photo.jpeg"
+              alt="Prospère Azonglahoun"
+              fill
+              className="object-contain"
+              priority
             />
-            <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-secondary/40">
-              <Image
-                src="/prospere-photo.jpeg"
-                alt="Prospère Azonglahoun"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
           </div>
         </div>
 

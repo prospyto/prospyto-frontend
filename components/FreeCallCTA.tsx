@@ -4,18 +4,26 @@ import { useState } from "react";
 import { Clock, Check, MessageCircle } from "lucide-react";
 import Blob from "./Blob";
 
+// Même numéro que Contact.tsx, pour éviter d'avoir deux numéros
+// WhatsApp différents sur le site.
+const PHONE_DISPLAY = "+229 01 90 68 56 84";
+const WHATSAPP_NUMBER = PHONE_DISPLAY.replace(/[^0-9]/g, "");
+
 export default function FreeCallCTA() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [sent, setSent] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // Ici tu peux intégrer un formulaire (Typeform, Calendly, etc.)
-    console.log("Email:", email);
-    setSubmitted(true);
+    const text = `Bonjour Prospère, je m'appelle ${name}. ${message}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+    setSent(true);
     setTimeout(() => {
-      setSubmitted(false);
-      setEmail("");
+      setSent(false);
+      setName("");
+      setMessage("");
     }, 3000);
   }
 
@@ -45,31 +53,42 @@ export default function FreeCallCTA() {
 
         {/* Description */}
         <p className="text-lg text-white/80 font-body mb-8 max-w-2xl leading-relaxed">
-          Réserve un appel découverte gratuit de 30 minutes. On discutera de ton idée, 
-          de tes besoins, et je te dirai exactement comment je peux t&apos;aider.
+          Décris ton projet en quelques mots. Le message s&apos;ouvre directement dans 
+          WhatsApp, prêt à envoyer, pour qu&apos;on en discute tout de suite.
         </p>
 
         {/* Formulaire */}
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 mb-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 mb-6">
           <input
-            type="email"
-            placeholder="Ton email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Ton nom"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
-            className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-secondary focus:outline-none text-white placeholder-white/50 font-body transition-colors"
+            className="px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-secondary focus:outline-none text-white placeholder-white/50 font-body transition-colors"
+          />
+          <textarea
+            placeholder="Ton projet en quelques mots"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+            rows={3}
+            className="px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-secondary focus:outline-none text-white placeholder-white/50 font-body transition-colors resize-none"
           />
           <button
             type="submit"
             className="btn-animate btn-primary-fx inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-primary hover:bg-primary-hover font-heading font-semibold text-white transition-colors whitespace-nowrap"
           >
-            {submitted ? (
+            {sent ? (
               <>
                 <Check size={18} />
-                Vérifie ton email!
+                Ouvert dans WhatsApp
               </>
             ) : (
-              "Réserver l'appel"
+              <>
+                <MessageCircle size={18} />
+                Envoyer sur WhatsApp
+              </>
             )}
           </button>
         </form>
@@ -86,22 +105,8 @@ export default function FreeCallCTA() {
           </div>
           <div className="flex items-center gap-2">
             <Check size={16} className="text-secondary" />
-            <p>Appel via WhatsApp/Zoom</p>
+            <p>Discussion directe sur WhatsApp</p>
           </div>
-        </div>
-
-        {/* Alternative */}
-        <div className="mt-8 pt-8 border-t border-white/10">
-          <p className="text-white/60 font-body text-sm mb-3">Préfères un contact direct?</p>
-          <a
-            href="https://wa.me/22901906856"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-animate inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary/50 hover:bg-secondary/10 text-secondary font-body transition-colors text-sm"
-          >
-            <MessageCircle size={16} />
-            WhatsApp
-          </a>
         </div>
       </div>
     </section>

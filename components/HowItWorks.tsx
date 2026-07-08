@@ -34,7 +34,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="relative mx-auto max-w-5xl px-6 py-20 overflow-hidden">
+    <section id="comment-ca-marche" className="relative mx-auto max-w-5xl px-6 py-20 overflow-hidden">
       <Blob color="var(--primary-color)" className="-bottom-32 -left-32" size={320} />
       
       <div className="relative z-10">
