@@ -8,7 +8,6 @@ const LINKS = [
   { href: "#about", label: "Pourquoi moi" },
   { href: "#projects", label: "Projets" },
   { href: "#skills", label: "Compétences" },
-  { href: "#appel-gratuit", label: "Démarrer" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -70,6 +69,13 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <a
+            href="#appel-gratuit"
+            onClick={() => setOpen(false)}
+            className="btn-animate btn-primary-fx text-center rounded-lg bg-primary hover:bg-primary-hover px-4 py-2.5 text-sm font-heading font-semibold text-white transition-colors mt-1"
+          >
+            Démarrer
+          </a>
         </div>
       )}
     </header>

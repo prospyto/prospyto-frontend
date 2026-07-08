@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Texte */}
           <div>
-            <h1 className="font-heading font-bold text-4xl md:text-5xl leading-tight tracking-tight text-white mb-4">
+            <h1 className="hero-title-sweep font-heading font-bold text-4xl md:text-5xl leading-tight tracking-tight mb-4">
               Tu as besoin d&apos;un site web, d&apos;une app, ou d&apos;un outil?
             </h1>
             
@@ -63,9 +63,9 @@ export default function Hero() {
           </div>
 
           {/* Image */}
-          <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto md:mx-0">
+          <div className="relative w-80 h-80 md:w-[26rem] md:h-[26rem] mx-auto md:mx-0">
             <Image
-              src="/prospere-photo.jpeg"
+              src="/prospere-photo-nobg.png"
               alt="Prospère Azonglahoun"
               fill
               className="object-contain"
