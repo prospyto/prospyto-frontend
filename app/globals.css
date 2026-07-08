@@ -124,7 +124,7 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s cubic-bezier(0.32, 0.72, 0.3, 1), transform 0.6s cubic-bezier(0.32, 0.72, 0.3, 1);
 }
 
 .reveal.reveal-visible {
@@ -132,14 +132,180 @@ body {
   transform: translateY(0);
 }
 
-/* Curseur personnalisé actif : masque le curseur natif hors mobile */
-@media (pointer: fine) {
-  body.has-cloud-cursor {
-    cursor: none;
+/* ---- Animations Premium pour Boutons ---- */
+button, a[role="button"], .btn {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Boutons primaires avec glow subtle */
+.bg-primary {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.bg-primary:hover {
+  box-shadow: 0 0 20px rgba(122, 44, 191, 0.4);
+  transform: translateY(-2px);
+}
+
+.bg-primary:active {
+  transform: translateY(0);
+}
+
+/* Boutons secondaires */
+.border-secondary {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.border-secondary:hover {
+  background-color: rgba(224, 170, 255, 0.05);
+  border-color: rgba(224, 170, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ---- Animations Premium pour Titres (Fade + Slide) ---- */
+h1, h2, h3, .font-heading {
+  transition: all 0.4s cubic-bezier(0.32, 0.72, 0.3, 1);
+}
+
+/* ---- Animations de Cartes avec Stagger ---- */
+.card-surface, [style*="background: #2d0a52"] {
+  transition: all 0.3s cubic-bezier(0.32, 0.72, 0.3, 1);
+}
+
+.card-surface:hover, [style*="background: #2d0a52"]:hover {
+  border-color: rgba(224, 170, 255, 0.6);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(122, 44, 191, 0.15);
+}
+
+/* ---- Animations d'Icônes (Subtle Rotation + Scale) ---- */
+svg, .lucide {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Icônes dans les cartes au hover */
+.card-surface:hover svg, 
+[style*="background: #2d0a52"]:hover svg {
+  transform: scale(1.1) rotate(5deg);
+  color: var(--secondary-color);
+}
+
+/* ---- Stagger Animation pour Listes ---- */
+.space-y-3 > div, 
+.space-y-4 > p,
+.grid > div {
+  animation: stagger-fade-in 0.6s cubic-bezier(0.32, 0.72, 0.3, 1) backwards;
+}
+
+.space-y-3 > div:nth-child(1) { animation-delay: 0.1s; }
+.space-y-3 > div:nth-child(2) { animation-delay: 0.2s; }
+.space-y-3 > div:nth-child(3) { animation-delay: 0.3s; }
+
+.grid > div:nth-child(1) { animation-delay: 0.1s; }
+.grid > div:nth-child(2) { animation-delay: 0.2s; }
+.grid > div:nth-child(3) { animation-delay: 0.3s; }
+.grid > div:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes stagger-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
-  body.has-cloud-cursor a,
-  body.has-cloud-cursor button {
-    cursor: none;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Input Focus Glow ---- */
+input:focus {
+  box-shadow: 0 0 16px rgba(224, 170, 255, 0.25);
+  transition: box-shadow 0.3s ease;
+}
+
+/* ---- CTA Pulse Subtle ---- */
+.bg-primary {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    box-shadow: 0 0 0px rgba(122, 44, 191, 0);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(122, 44, 191, 0.3);
+  }
+}
+
+.bg-primary:hover {
+  animation: none;
+}
+
+/* ---- Respect des préférences d'accessibilité ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  button, a[role="button"], .card-surface, [style*="background: #2d0a52"] {
+    transform: none !important;
+  }
+}
+
+/* ---- Hero Title Container (Hauteur FIXE - zéro layout shift) ---- */
+.hero-title-container {
+  display: block;
+  height: 400px;  /* Mobile: hauteur fixe énorme */
+  overflow: hidden;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .hero-title-container {
+    height: 280px;  /* Desktop: hauteur fixe énorme */
+  }
+}
+
+/* ---- Hero Title Sans animation mouvante ---- */
+.hero-title-fixed {
+  color: var(--secondary-color);
+  text-shadow: 0 0 20px rgba(224, 170, 255, 0.25);
+  transition: text-shadow 0.3s ease;
+  display: block;
+}
+
+.hero-title-fixed:hover {
+  text-shadow: 0 0 30px rgba(224, 170, 255, 0.4);
+}
+
+/* Caret du Typewriter */
+.typewriter-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: var(--secondary-color);
+  margin-left: 0.1em;
+  animation: caret-blink 1s ease-in-out infinite;
+}
+
+@keyframes caret-blink {
+  0%, 49%, 100% {
+    opacity: 1;
+  }
+  50%, 99% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-caret {
+    animation: none;
+    opacity: 1;
   }
 }
 
