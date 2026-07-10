@@ -2,29 +2,39 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, CheckCircle } from "lucide-react";
+import { Lock } from "lucide-react";
+import { getApiBase, saveToken } from "@/lib/adminAuth";
 
 export default function AdminLogin() {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  // Tu dois changer ce mot de passe!
-  const ADMIN_PASSWORD = "Prospyre2024Admin!";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
-    if (password === ADMIN_PASSWORD) {
-      // Mot de passe correct: créer le cookie et rediriger
-      document.cookie = "admin_authenticated=true; path=/; max-age=86400";
-      setLoading(false);
+    try {
+      const res = await fetch(`${getApiBase()}/api/admin/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!res.ok) {
+        setError("Identifiants incorrects");
+        setLoading(false);
+        return;
+      }
+
+      const data = await res.json();
+      saveToken(data.token);
       router.push("/admin");
-    } else {
-      setError("Mot de passe incorrect");
+    } catch {
+      setError("Impossible de contacter le serveur");
       setLoading(false);
     }
   };
@@ -49,6 +59,21 @@ export default function AdminLogin() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-white font-body text-sm mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="ton-email@exemple.com"
+              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-secondary focus:outline-none text-white placeholder-white/50 font-body transition-all"
+              disabled={loading}
+              autoComplete="username"
+            />
+          </div>
+
+          <div>
+            <label className="block text-white font-body text-sm mb-2">
               Mot de passe
             </label>
             <input
@@ -58,6 +83,7 @@ export default function AdminLogin() {
               placeholder="Entrez le mot de passe"
               className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-secondary focus:outline-none text-white placeholder-white/50 font-body transition-all"
               disabled={loading}
+              autoComplete="current-password"
             />
           </div>
 
@@ -79,10 +105,11 @@ export default function AdminLogin() {
         {/* Info */}
         <div className="mt-8 p-4 rounded-lg bg-white/5 border border-white/10">
           <p className="text-white/70 font-body text-xs leading-relaxed">
-            <strong>Sécurité:</strong> Cette page est accessible UNIQUEMENT via une URL secrète longue et hashée. Même si quelqu'un essaie d'accéder à /admin, il verra une erreur 404.
+            <strong>Sécurité:</strong> l&apos;authentification est vérifiée par le backend (JWT). Cette URL secrète est une couche d&apos;obscurité additionnelle, pas la protection principale.
           </p>
         </div>
       </div>
     </div>
   );
 }
+

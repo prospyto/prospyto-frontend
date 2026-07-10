@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { clearToken } from "@/lib/adminAuth";
 
 const NAV_ITEMS = [
   { key: "overview", label: "Vue d'ensemble" },
@@ -13,6 +14,11 @@ const NAV_ITEMS = [
 
 export default function Sidebar() {
   const [active, setActive] = useState("overview");
+
+  function handleLogout() {
+    clearToken();
+    window.location.href = "/admin/verify-8db242e403bbe210e9392a1259cc7024360af1f8e4375f529b9b3130620c004d";
+  }
 
   return (
     <aside
@@ -46,6 +52,14 @@ export default function Sidebar() {
           );
         })}
       </nav>
+
+      <button
+        onClick={handleLogout}
+        className="mt-auto flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-body text-left transition-colors"
+        style={{ color: "var(--admin-text-muted)" }}
+      >
+        Déconnexion
+      </button>
     </aside>
   );
 }

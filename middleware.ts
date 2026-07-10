@@ -13,15 +13,18 @@ export function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
-    // Vérifier si l'utilisateur est authentifié via le cookie
-    const adminToken = request.cookies.get("admin_authenticated")?.value;
+    // Gate UX seulement : présence d'un token posé après un login réussi
+    // contre le backend. Ce cookie n'est PAS la sécurité — la vraie
+    // protection est le JWT vérifié par le backend sur chaque requête
+    // /api/projects et /api/inquiries. Un cookie falsifié ne donne accès
+    // à aucune donnée, juste à un écran vide qui échouera à charger.
+    const hasSession = request.cookies.get("prospyto_admin_present")?.value === "1";
 
-    if (adminToken === "true") {
-      // Authentifié: autoriser l'accès à /admin
+    if (hasSession) {
       return NextResponse.next();
     }
 
-    // Non authentifié et pas l'URL secrète: afficher 404
+    // Pas de session et pas l'URL secrète: afficher 404
     return NextResponse.rewrite(new URL("/404", request.url), { status: 404 });
   }
 

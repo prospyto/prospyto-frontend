@@ -5,16 +5,15 @@ import Sidebar from "./components/Sidebar";
 import StatCard from "./components/StatCard";
 import CircularProgress from "./components/CircularProgress";
 import ProjectRow, { AdminProject } from "./components/ProjectRow";
+import { adminFetch } from "@/lib/adminAuth";
 
 export default function AdminDashboard() {
   const [projects, setProjects] = useState<AdminProject[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-
   useEffect(() => {
-    fetch(`${apiBase}/api/projects`)
+    adminFetch("/api/projects")
       .then((res) => {
         if (!res.ok) throw new Error("Erreur de chargement");
         return res.json();
@@ -22,7 +21,7 @@ export default function AdminDashboard() {
       .then((data) => setProjects(data))
       .catch(() => setError("Impossible de charger les projets (backend indisponible ?)"))
       .finally(() => setLoading(false));
-  }, [apiBase]);
+  }, []);
 
   const activeCount = projects.filter((p) => p.status !== "complete").length;
   const completedCount = projects.filter((p) => p.status === "complete").length;

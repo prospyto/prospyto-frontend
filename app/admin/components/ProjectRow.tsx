@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { adminFetch } from "@/lib/adminAuth";
 
 export type AdminProject = {
   id: number;
@@ -22,16 +23,13 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
   const [percent, setPercent] = useState(project.completion_percent);
   const [saving, setSaving] = useState(false);
 
-  const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-
   async function updateProgress(newPercent: number) {
     const clamped = Math.min(100, Math.max(0, newPercent));
     setPercent(clamped);
     setSaving(true);
     try {
-      await fetch(`${apiBase}/api/projects/${project.id}/progress`, {
+      await adminFetch(`/api/projects/${project.id}/progress`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ percent: clamped }),
       });
     } catch {
@@ -42,15 +40,14 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
   }
 
   async function openWhatsApp() {
-    const res = await fetch(`${apiBase}/api/projects/${project.id}/whatsapp-link`);
+    const res = await adminFetch(`/api/projects/${project.id}/whatsapp-link`);
     const data = await res.json();
     if (data.link) window.open(data.link, "_blank");
   }
 
   async function sendNotification() {
-    await fetch(`${apiBase}/api/projects/${project.id}/notify`, {
+    await adminFetch(`/api/projects/${project.id}/notify`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ type: "progress" }),
     });
   }
