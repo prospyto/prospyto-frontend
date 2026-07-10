@@ -1,19 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { clearToken } from "@/lib/adminAuth";
 
 const NAV_ITEMS = [
-  { key: "overview", label: "Vue d'ensemble" },
-  { key: "inquiries", label: "Demandes" },
-  { key: "projects", label: "Projets en cours" },
-  { key: "notifications", label: "Notifications" },
-  { key: "reviews", label: "Avis reçus" },
-  { key: "blog", label: "Blog" },
+  { href: "/admin", label: "Vue d'ensemble" },
+  { href: "/admin/blog", label: "Blog" },
+  { href: "/admin/analytics", label: "Analytics" },
 ];
 
 export default function Sidebar() {
-  const [active, setActive] = useState("overview");
+  const pathname = usePathname();
 
   function handleLogout() {
     clearToken();
@@ -36,11 +34,11 @@ export default function Sidebar() {
 
       <nav className="flex flex-col gap-1">
         {NAV_ITEMS.map((item) => {
-          const isActive = active === item.key;
+          const isActive = pathname === item.href;
           return (
-            <button
-              key={item.key}
-              onClick={() => setActive(item.key)}
+            <Link
+              key={item.href}
+              href={item.href}
               className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-body text-left transition-colors"
               style={{
                 background: isActive ? "var(--admin-accent)" : "transparent",
@@ -48,7 +46,7 @@ export default function Sidebar() {
               }}
             >
               {item.label}
-            </button>
+            </Link>
           );
         })}
       </nav>
