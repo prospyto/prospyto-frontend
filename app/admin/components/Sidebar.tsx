@@ -7,6 +7,7 @@ import { clearToken } from "@/lib/adminAuth";
 const NAV_ITEMS = [
   { href: "/admin", label: "Vue d'ensemble" },
   { href: "/admin/blog", label: "Blog" },
+  { href: "/admin/reviews", label: "Avis" },
   { href: "/admin/analytics", label: "Analytics" },
 ];
 

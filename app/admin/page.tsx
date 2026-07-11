@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import StatCard from "./components/StatCard";
 import CircularProgress from "./components/CircularProgress";
 import ProjectRow, { AdminProject } from "./components/ProjectRow";
+import RecentVisits from "./components/RecentVisits";
 import { adminFetch } from "@/lib/adminAuth";
 
 export default function AdminDashboard() {
@@ -78,7 +79,10 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          <CircularProgress percent={avgCompletion} label="Progression moyenne des projets actifs" />
+          <div>
+            <CircularProgress percent={avgCompletion} label="Progression moyenne des projets actifs" />
+            <RecentVisits />
+          </div>
         </div>
       </main>
     </div>
