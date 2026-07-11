@@ -1,11 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { clearToken } from "@/lib/adminAuth";
+import { clearToken, adminFetch } from "@/lib/adminAuth";
 
 const NAV_ITEMS = [
   { href: "/admin", label: "Vue d'ensemble" },
+  { href: "/admin/inquiries", label: "Demandes" },
   { href: "/admin/blog", label: "Blog" },
   { href: "/admin/reviews", label: "Avis" },
   { href: "/admin/analytics", label: "Analytics" },
@@ -13,6 +15,14 @@ const NAV_ITEMS = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [pendingCount, setPendingCount] = useState(0);
+
+  useEffect(() => {
+    adminFetch("/api/inquiries")
+      .then((res) => res.json())
+      .then((data) => setPendingCount(Array.isArray(data) ? data.length : 0))
+      .catch(() => setPendingCount(0));
+  }, [pathname]);
 
   function handleLogout() {
     clearToken();
@@ -40,13 +50,24 @@ export default function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-body text-left transition-colors"
+              className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-body text-left transition-colors"
               style={{
                 background: isActive ? "var(--admin-accent)" : "transparent",
                 color: isActive ? "#ffffff" : "var(--admin-text-muted)",
               }}
             >
-              {item.label}
+              <span>{item.label}</span>
+              {item.href === "/admin/inquiries" && pendingCount > 0 && (
+                <span
+                  className="text-xs font-body font-medium rounded-full px-1.5 py-0.5 min-w-[1.25rem] text-center"
+                  style={{
+                    background: isActive ? "#ffffff" : "#ef4444",
+                    color: isActive ? "var(--admin-accent)" : "#ffffff",
+                  }}
+                >
+                  {pendingCount}
+                </span>
+              )}
             </Link>
           );
         })}
