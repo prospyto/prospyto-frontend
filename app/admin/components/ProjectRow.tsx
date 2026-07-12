@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { StickyNote } from "lucide-react";
+import { StickyNote, Copy, Check } from "lucide-react";
 import { adminFetch } from "@/lib/adminAuth";
 import ProjectNotes from "./ProjectNotes";
 
@@ -21,10 +21,14 @@ const STATUS_LABEL: Record<AdminProject["status"], string> = {
   complete: "Complété",
 };
 
+const STATUS_OPTIONS: AdminProject["status"][] = ["discussion", "en_cours", "complete"];
+
 export default function ProjectRow({ project }: { project: AdminProject }) {
   const [percent, setPercent] = useState(project.completion_percent);
+  const [status, setStatus] = useState(project.status);
   const [saving, setSaving] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   async function updateProgress(newPercent: number) {
     const clamped = Math.min(100, Math.max(0, newPercent));
@@ -39,6 +43,33 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
       // silencieux : à brancher sur un toast d'erreur plus tard
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function updateStatus(newStatus: AdminProject["status"]) {
+    const previous = status;
+    setStatus(newStatus);
+    // Le backend force completion_percent à 100 quand le statut passe à "complete".
+    if (newStatus === "complete") setPercent(100);
+    try {
+      const res = await adminFetch(`/api/projects/${project.id}/status`, {
+        method: "PATCH",
+        body: JSON.stringify({ status: newStatus }),
+      });
+      if (!res.ok) throw new Error();
+    } catch {
+      setStatus(previous);
+    }
+  }
+
+  async function copyTrackingLink() {
+    const url = `${window.location.origin}/track/${project.tracking_link}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2000);
+    } catch {
+      // Presse-papiers indisponible (ex: contexte non sécurisé) : on ignore silencieusement.
     }
   }
 
@@ -62,12 +93,40 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
     >
       <div className="flex flex-col md:flex-row md:items-center gap-4">
         <div className="flex-1 min-w-0">
-          <p className="font-heading font-semibold text-sm" style={{ color: "var(--admin-text)" }}>
-            {project.title}
-          </p>
-          <p className="text-xs mt-1 font-body" style={{ color: "var(--admin-text-muted)" }}>
-            {project.client_name} · {STATUS_LABEL[project.status]}
-          </p>
+          <div className="flex items-center gap-2">
+            <p className="font-heading font-semibold text-sm truncate" style={{ color: "var(--admin-text)" }}>
+              {project.title}
+            </p>
+            <button
+              onClick={copyTrackingLink}
+              aria-label="Copier le lien de suivi"
+              className="shrink-0 p-1 rounded"
+              style={{ color: linkCopied ? "#10b981" : "var(--admin-text-muted)" }}
+            >
+              {linkCopied ? <Check size={13} /> : <Copy size={13} />}
+            </button>
+          </div>
+          <div className="flex items-center gap-2 mt-1">
+            <p className="text-xs font-body" style={{ color: "var(--admin-text-muted)" }}>
+              {project.client_name}
+            </p>
+            <select
+              value={status}
+              onChange={(e) => updateStatus(e.target.value as AdminProject["status"])}
+              className="text-xs font-body rounded px-1.5 py-0.5"
+              style={{
+                background: "var(--admin-bg)",
+                border: "1px solid var(--admin-border)",
+                color: status === "complete" ? "#10b981" : "var(--admin-text-muted)",
+              }}
+            >
+              {STATUS_OPTIONS.map((s) => (
+                <option key={s} value={s}>
+                  {STATUS_LABEL[s]}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className="flex items-center gap-3 w-full md:w-64">
