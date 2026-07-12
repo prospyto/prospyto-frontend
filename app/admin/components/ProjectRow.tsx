@@ -173,7 +173,7 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
         </div>
 
         <div className="flex items-center gap-2">
-          {[5, 10].map((step) => (
+          {[1, 5, 10].map((step) => (
             <button
               key={step}
               onClick={() => updateProgress(percent + step)}
