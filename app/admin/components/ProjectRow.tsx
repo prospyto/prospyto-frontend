@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { StickyNote, Copy, Check } from "lucide-react";
+import { StickyNote, Copy, Check, X } from "lucide-react";
 import { adminFetch } from "@/lib/adminAuth";
 import ProjectNotes from "./ProjectNotes";
 
@@ -29,6 +29,10 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
   const [saving, setSaving] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
+  const [notifyModalOpen, setNotifyModalOpen] = useState(false);
+  const [customMessage, setCustomMessage] = useState("");
+  const [notifySending, setNotifySending] = useState(false);
+  const [notifyError, setNotifyError] = useState(false);
 
   async function updateProgress(newPercent: number) {
     const clamped = Math.min(100, Math.max(0, newPercent));
@@ -80,10 +84,26 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
   }
 
   async function sendNotification() {
-    await adminFetch(`/api/projects/${project.id}/notify`, {
-      method: "POST",
-      body: JSON.stringify({ type: "progress" }),
-    });
+    setNotifySending(true);
+    setNotifyError(false);
+    try {
+      const res = await adminFetch(`/api/projects/${project.id}/notify`, {
+        method: "POST",
+        body: JSON.stringify({
+          type: "progress",
+          custom_message: customMessage.trim() || undefined,
+        }),
+      });
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      if (data.whatsapp_link) window.open(data.whatsapp_link, "_blank");
+      setNotifyModalOpen(false);
+      setCustomMessage("");
+    } catch {
+      setNotifyError(true);
+    } finally {
+      setNotifySending(false);
+    }
   }
 
   return (
@@ -171,7 +191,7 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
             WhatsApp
           </button>
           <button
-            onClick={sendNotification}
+            onClick={() => setNotifyModalOpen(true)}
             className="px-3 py-1.5 rounded-md text-xs font-body font-medium"
             style={{ background: "var(--admin-accent)", color: "#ffffff" }}
           >
@@ -193,6 +213,73 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
       </div>
 
       {notesOpen && <ProjectNotes projectId={project.id} />}
+
+      {notifyModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.5)" }}
+          onClick={() => !notifySending && setNotifyModalOpen(false)}
+        >
+          <div
+            className="w-full max-w-md rounded-2xl p-5"
+            style={{ background: "var(--admin-surface)", border: "1px solid var(--admin-border)" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-3">
+              <p className="font-heading font-semibold text-sm" style={{ color: "var(--admin-text)" }}>
+                Notifier {project.client_name}
+              </p>
+              <button
+                onClick={() => setNotifyModalOpen(false)}
+                disabled={notifySending}
+                aria-label="Fermer"
+                style={{ color: "var(--admin-text-muted)" }}
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            <p className="text-xs font-body mb-2" style={{ color: "var(--admin-text-muted)" }}>
+              Le message standard de progression ({percent}%) sera envoyé. Tu peux ajouter une note
+              personnelle en plus (optionnel) :
+            </p>
+
+            <textarea
+              value={customMessage}
+              onChange={(e) => setCustomMessage(e.target.value)}
+              placeholder="Ex : On a pris un peu de retard sur le design, mais tout rentre dans l'ordre cette semaine."
+              rows={4}
+              className="w-full rounded-md px-3 py-2 text-xs font-body resize-none"
+              style={{ background: "var(--admin-bg)", border: "1px solid var(--admin-border)", color: "var(--admin-text)" }}
+            />
+
+            {notifyError && (
+              <p className="text-xs font-body mt-2" style={{ color: "#ef4444" }}>
+                Échec de l&apos;envoi. Réessaie.
+              </p>
+            )}
+
+            <div className="flex items-center justify-end gap-2 mt-4">
+              <button
+                onClick={() => setNotifyModalOpen(false)}
+                disabled={notifySending}
+                className="px-3 py-1.5 rounded-md text-xs font-body"
+                style={{ background: "var(--admin-bg)", border: "1px solid var(--admin-border)", color: "var(--admin-text)" }}
+              >
+                Annuler
+              </button>
+              <button
+                onClick={sendNotification}
+                disabled={notifySending}
+                className="px-3 py-1.5 rounded-md text-xs font-body font-medium"
+                style={{ background: "#10b981", color: "#ffffff" }}
+              >
+                {notifySending ? "Envoi…" : "Envoyer sur WhatsApp"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
