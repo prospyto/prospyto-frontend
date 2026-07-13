@@ -34,12 +34,12 @@ export default function BlogIndex() {
   return (
     <main className="min-h-screen px-6 py-16 md:py-24">
       <div className="mx-auto max-w-3xl">
-        <a
+        <Link
           href="/"
           className="text-sm font-body text-white/50 hover:text-secondary transition-colors"
         >
           ← Retour à l&apos;accueil
-        </a>
+        </Link>
 
         <span className="section-eyebrow mt-6 block">Blog</span>
         <h1 className="mt-3 font-heading font-semibold text-3xl md:text-4xl text-white">

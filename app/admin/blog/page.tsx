@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Plus, Trash2, Eye } from "lucide-react";
 import Sidebar from "../components/Sidebar";
+import MarkdownToolbar from "../components/MarkdownToolbar";
 import { adminFetch } from "@/lib/adminAuth";
+import { renderMarkdown } from "@/lib/renderMarkdown";
 
 type PostSummary = {
   id: number;
@@ -171,6 +173,8 @@ function BlogEditor({
   const [content, setContent] = useState(post?.content ?? "");
   const [status, setStatus] = useState<"draft" | "published">(post?.status ?? "draft");
   const [saving, setSaving] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   async function save() {
     if (!title.trim() || !content.trim()) return;
@@ -211,8 +215,8 @@ function BlogEditor({
         )}
       </div>
 
-      <div className="mt-6 flex flex-col gap-4 max-w-2xl">
-        <div>
+      <div className="mt-6 flex flex-col gap-4 max-w-4xl">
+        <div className="max-w-lg">
           <label className="block text-xs font-body mb-1.5" style={{ color: "var(--admin-text-muted)" }}>
             Titre
           </label>
@@ -226,17 +230,43 @@ function BlogEditor({
         </div>
 
         <div>
-          <label className="block text-xs font-body mb-1.5" style={{ color: "var(--admin-text-muted)" }}>
-            Contenu
-          </label>
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="Contenu de l'article…"
-            rows={14}
-            className="w-full rounded-lg px-3 py-2 text-sm font-body resize-y"
-            style={{ background: "var(--admin-surface)", border: "1px solid var(--admin-border)", color: "var(--admin-text)" }}
-          />
+          <div className="flex items-center justify-between mb-1.5">
+            <label className="block text-xs font-body" style={{ color: "var(--admin-text-muted)" }}>
+              Contenu (Markdown)
+            </label>
+            <button
+              type="button"
+              onClick={() => setShowPreview((v) => !v)}
+              className="text-xs font-body flex items-center gap-1"
+              style={{ color: showPreview ? "var(--admin-accent)" : "var(--admin-text-muted)" }}
+            >
+              <Eye size={12} />
+              {showPreview ? "Masquer l'aperçu" : "Voir l'aperçu"}
+            </button>
+          </div>
+
+          <div className={showPreview ? "grid grid-cols-2 gap-4" : ""}>
+            <div>
+              <MarkdownToolbar textareaRef={textareaRef} value={content} onChange={setContent} />
+              <textarea
+                ref={textareaRef}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="Contenu de l'article… (Markdown: **gras**, *italique*, ## titre, - liste, [lien](url))"
+                rows={16}
+                className="w-full rounded-b-lg px-3 py-2 text-sm font-body resize-y"
+                style={{ background: "var(--admin-surface)", border: "1px solid var(--admin-border)", color: "var(--admin-text)" }}
+              />
+            </div>
+
+            {showPreview && (
+              <div
+                className="rounded-lg px-4 py-3 overflow-y-auto prose-invert-sm"
+                style={{ background: "var(--admin-bg)", border: "1px solid var(--admin-border)", maxHeight: "420px" }}
+                dangerouslySetInnerHTML={{ __html: renderMarkdown(content) }}
+              />
+            )}
+          </div>
         </div>
 
         <div className="flex items-center gap-3">

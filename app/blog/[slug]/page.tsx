@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
+import { renderMarkdown } from "@/lib/renderMarkdown";
 
 type PostDetail = {
   title: string;
@@ -44,12 +46,12 @@ export default function BlogPost() {
   return (
     <main className="min-h-screen px-6 py-16 md:py-24">
       <div className="mx-auto max-w-2xl">
-        <a
+        <Link
           href="/blog"
           className="text-sm font-body text-white/50 hover:text-secondary transition-colors"
         >
           ← Tous les articles
-        </a>
+        </Link>
 
         {loadState === "loading" && (
           <p className="mt-8 text-sm font-body text-white/50">Chargement de l&apos;article…</p>
@@ -91,9 +93,10 @@ export default function BlogPost() {
               })}
             </p>
 
-            <div className="mt-8 text-sm md:text-base font-body text-white/80 leading-relaxed whitespace-pre-wrap">
-              {post.content}
-            </div>
+            <div
+              className="mt-8 text-sm md:text-base font-body text-white/80 prose-invert-sm"
+              dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }}
+            />
           </article>
         )}
       </div>

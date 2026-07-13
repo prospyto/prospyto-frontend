@@ -488,6 +488,36 @@ input:focus {
 }
 
 /* ---- Système de cartes : profondeur, dégradé, effet au survol ---- */
+/* Rendu du contenu markdown (aperçu admin + articles blog publics) */
+.prose-invert-sm h1, .prose-invert-sm h2, .prose-invert-sm h3 {
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+}
+.prose-invert-sm h1 { font-size: 1.4em; }
+.prose-invert-sm h2 { font-size: 1.2em; }
+.prose-invert-sm h3 { font-size: 1.05em; }
+.prose-invert-sm p { margin-bottom: 0.9em; line-height: 1.7; }
+.prose-invert-sm ul, .prose-invert-sm ol { margin: 0.5em 0 0.9em 1.4em; }
+.prose-invert-sm li { margin-bottom: 0.3em; }
+.prose-invert-sm ul { list-style: disc; }
+.prose-invert-sm ol { list-style: decimal; }
+.prose-invert-sm a { color: var(--secondary, #5eead4); text-decoration: underline; }
+.prose-invert-sm strong { font-weight: 600; color: #ffffff; }
+.prose-invert-sm code {
+  background: rgba(255,255,255,0.08);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.prose-invert-sm blockquote {
+  border-left: 2px solid rgba(255,255,255,0.2);
+  padding-left: 1em;
+  color: rgba(255,255,255,0.6);
+  margin: 0.9em 0;
+}
+
 .card-surface {
   position: relative;
   background: linear-gradient(155deg, #33095e 0%, #1c0538 100%);
