@@ -11,10 +11,9 @@ const PROJECT_TYPES = [
   "Autre",
 ];
 
-// Dégradé violet -> lavande, cohérent avec l'identité du site
-// (le bleu/teal de l'image de référence n'est pas repris ici : cette
-// palette est propre à Prospyto, la structure "checklist numérotée" oui).
-const STEP_COLORS = ["#5a189a", "#7b2cbf", "#9d4edd", "#c77dff", "#e0aaff"];
+// Dégradé rouge-orange -> beige, cohérent avec la nouvelle identité Prospyto
+// Du beige clair au rouge-orange foncé pour les étapes du formulaire
+const STEP_COLORS = ["#ffecd1", "#f5c89b", "#dc2f02", "#c4280a", "#8a1a02"];
 
 type Status = "idle" | "sending" | "success" | "error";
 
