@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { StickyNote, Copy, Check, X } from "lucide-react";
+import { StickyNote, Copy, Check, X, CalendarDays } from "lucide-react";
 import { adminFetch } from "@/lib/adminAuth";
 import ProjectNotes from "./ProjectNotes";
 
@@ -13,6 +13,8 @@ export type AdminProject = {
   completion_percent: number;
   status: "discussion" | "en_cours" | "complete";
   tracking_link: string;
+  start_date: string | null;
+  estimated_end_date: string | null;
 };
 
 const STATUS_LABEL: Record<AdminProject["status"], string> = {
@@ -22,6 +24,11 @@ const STATUS_LABEL: Record<AdminProject["status"], string> = {
 };
 
 const STATUS_OPTIONS: AdminProject["status"][] = ["discussion", "en_cours", "complete"];
+
+function toDateInputValue(value: string | null): string {
+  if (!value) return "";
+  return value.slice(0, 10);
+}
 
 export default function ProjectRow({ project }: { project: AdminProject }) {
   const [percent, setPercent] = useState(project.completion_percent);
@@ -34,6 +41,11 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
   const [customMessage, setCustomMessage] = useState("");
   const [notifySending, setNotifySending] = useState(false);
   const [notifyError, setNotifyError] = useState(false);
+  const [datesModalOpen, setDatesModalOpen] = useState(false);
+  const [startDateInput, setStartDateInput] = useState(toDateInputValue(project.start_date));
+  const [endDateInput, setEndDateInput] = useState(toDateInputValue(project.estimated_end_date));
+  const [datesSaving, setDatesSaving] = useState(false);
+  const [datesError, setDatesError] = useState(false);
 
   async function updateProgress(newPercent: number) {
     const clamped = Math.min(100, Math.max(0, newPercent));
@@ -105,6 +117,26 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
       setNotifyError(true);
     } finally {
       setNotifySending(false);
+    }
+  }
+
+  async function saveDates() {
+    setDatesSaving(true);
+    setDatesError(false);
+    try {
+      const res = await adminFetch(`/api/projects/${project.id}/dates`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          start_date: startDateInput || null,
+          estimated_end_date: endDateInput || null,
+        }),
+      });
+      if (!res.ok) throw new Error();
+      setDatesModalOpen(false);
+    } catch {
+      setDatesError(true);
+    } finally {
+      setDatesSaving(false);
     }
   }
 
@@ -201,6 +233,22 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
             style={{ background: "var(--admin-accent)", color: "#ffffff" }}
           >
             Notifier
+          </button>
+          <button
+            onClick={() => {
+              setStartDateInput(toDateInputValue(project.start_date));
+              setEndDateInput(toDateInputValue(project.estimated_end_date));
+              setDatesModalOpen(true);
+            }}
+            aria-label="Modifier les dates"
+            className="p-1.5 rounded-md"
+            style={{
+              background: "var(--admin-bg)",
+              border: "1px solid var(--admin-border)",
+              color: "var(--admin-text-muted)",
+            }}
+          >
+            <CalendarDays size={14} />
           </button>
           <button
             onClick={() => setNotesOpen((open) => !open)}
@@ -310,6 +358,81 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
                 style={{ background: "#10b981", color: "#ffffff" }}
               >
                 {notifySending ? "Envoi…" : "Envoyer sur WhatsApp"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {datesModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.5)" }}
+          onClick={() => !datesSaving && setDatesModalOpen(false)}
+        >
+          <div
+            className="w-full max-w-sm rounded-2xl p-5"
+            style={{ background: "var(--admin-surface)", border: "1px solid var(--admin-border)" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <p className="font-heading font-semibold text-sm" style={{ color: "var(--admin-text)" }}>
+                Dates — {project.title}
+              </p>
+              <button
+                onClick={() => setDatesModalOpen(false)}
+                disabled={datesSaving}
+                aria-label="Fermer"
+                style={{ color: "var(--admin-text-muted)" }}
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            <label className="block text-xs font-body mb-1" style={{ color: "var(--admin-text-muted)" }}>
+              Date de début
+            </label>
+            <input
+              type="date"
+              value={startDateInput}
+              onChange={(e) => setStartDateInput(e.target.value)}
+              className="w-full rounded-md px-3 py-2 text-xs font-body mb-3"
+              style={{ background: "var(--admin-bg)", border: "1px solid var(--admin-border)", color: "var(--admin-text)" }}
+            />
+
+            <label className="block text-xs font-body mb-1" style={{ color: "var(--admin-text-muted)" }}>
+              Fin estimée
+            </label>
+            <input
+              type="date"
+              value={endDateInput}
+              onChange={(e) => setEndDateInput(e.target.value)}
+              className="w-full rounded-md px-3 py-2 text-xs font-body"
+              style={{ background: "var(--admin-bg)", border: "1px solid var(--admin-border)", color: "var(--admin-text)" }}
+            />
+
+            {datesError && (
+              <p className="text-xs font-body mt-2" style={{ color: "#ef4444" }}>
+                Échec de la sauvegarde. Réessaie.
+              </p>
+            )}
+
+            <div className="flex items-center justify-end gap-2 mt-4">
+              <button
+                onClick={() => setDatesModalOpen(false)}
+                disabled={datesSaving}
+                className="px-3 py-1.5 rounded-md text-xs font-body"
+                style={{ background: "var(--admin-bg)", border: "1px solid var(--admin-border)", color: "var(--admin-text)" }}
+              >
+                Annuler
+              </button>
+              <button
+                onClick={saveDates}
+                disabled={datesSaving}
+                className="px-3 py-1.5 rounded-md text-xs font-body font-medium"
+                style={{ background: "var(--admin-accent)", color: "#ffffff" }}
+              >
+                {datesSaving ? "Sauvegarde…" : "Enregistrer"}
               </button>
             </div>
           </div>
