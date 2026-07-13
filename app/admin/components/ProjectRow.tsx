@@ -30,6 +30,7 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
   const [notesOpen, setNotesOpen] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const [notifyModalOpen, setNotifyModalOpen] = useState(false);
+  const [notifyType, setNotifyType] = useState<"progress" | "final">("progress");
   const [customMessage, setCustomMessage] = useState("");
   const [notifySending, setNotifySending] = useState(false);
   const [notifyError, setNotifyError] = useState(false);
@@ -90,8 +91,8 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
       const res = await adminFetch(`/api/projects/${project.id}/notify`, {
         method: "POST",
         body: JSON.stringify({
-          type: "progress",
-          custom_message: customMessage.trim() || undefined,
+          type: notifyType,
+          custom_message: notifyType === "progress" ? customMessage.trim() || undefined : undefined,
         }),
       });
       if (!res.ok) throw new Error();
@@ -99,6 +100,7 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
       if (data.whatsapp_link) window.open(data.whatsapp_link, "_blank");
       setNotifyModalOpen(false);
       setCustomMessage("");
+      setNotifyType("progress");
     } catch {
       setNotifyError(true);
     } finally {
@@ -191,7 +193,10 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
             WhatsApp
           </button>
           <button
-            onClick={() => setNotifyModalOpen(true)}
+            onClick={() => {
+              setNotifyType(status === "complete" ? "final" : "progress");
+              setNotifyModalOpen(true);
+            }}
             className="px-3 py-1.5 rounded-md text-xs font-body font-medium"
             style={{ background: "var(--admin-accent)", color: "#ffffff" }}
           >
@@ -240,18 +245,48 @@ export default function ProjectRow({ project }: { project: AdminProject }) {
             </div>
 
             <p className="text-xs font-body mb-2" style={{ color: "var(--admin-text-muted)" }}>
-              Le message standard de progression ({percent}%) sera envoyé. Tu peux ajouter une note
-              personnelle en plus (optionnel) :
+              {notifyType === "final"
+                ? "Le message de fin de projet sera envoyé (félicitations + lien de suivi + demande d'avis)."
+                : `Le message standard de progression (${percent}%) sera envoyé. Tu peux ajouter une note personnelle en plus (optionnel) :`}
             </p>
 
-            <textarea
-              value={customMessage}
-              onChange={(e) => setCustomMessage(e.target.value)}
-              placeholder="Ex : On a pris un peu de retard sur le design, mais tout rentre dans l'ordre cette semaine."
-              rows={4}
-              className="w-full rounded-md px-3 py-2 text-xs font-body resize-none"
-              style={{ background: "var(--admin-bg)", border: "1px solid var(--admin-border)", color: "var(--admin-text)" }}
-            />
+            {status === "complete" && (
+              <div className="flex items-center gap-2 mb-3">
+                <button
+                  onClick={() => setNotifyType("progress")}
+                  className="px-3 py-1 rounded-md text-xs font-body"
+                  style={{
+                    background: notifyType === "progress" ? "var(--admin-accent)" : "var(--admin-bg)",
+                    color: notifyType === "progress" ? "#ffffff" : "var(--admin-text-muted)",
+                    border: "1px solid var(--admin-border)",
+                  }}
+                >
+                  Progression
+                </button>
+                <button
+                  onClick={() => setNotifyType("final")}
+                  className="px-3 py-1 rounded-md text-xs font-body"
+                  style={{
+                    background: notifyType === "final" ? "var(--admin-accent)" : "var(--admin-bg)",
+                    color: notifyType === "final" ? "#ffffff" : "var(--admin-text-muted)",
+                    border: "1px solid var(--admin-border)",
+                  }}
+                >
+                  Notification finale
+                </button>
+              </div>
+            )}
+
+            {notifyType === "progress" && (
+              <textarea
+                value={customMessage}
+                onChange={(e) => setCustomMessage(e.target.value)}
+                placeholder="Ex : On a pris un peu de retard sur le design, mais tout rentre dans l'ordre cette semaine."
+                rows={4}
+                className="w-full rounded-md px-3 py-2 text-xs font-body resize-none"
+                style={{ background: "var(--admin-bg)", border: "1px solid var(--admin-border)", color: "var(--admin-text)" }}
+              />
+            )}
 
             {notifyError && (
               <p className="text-xs font-body mt-2" style={{ color: "#ef4444" }}>
