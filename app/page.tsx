@@ -4,6 +4,7 @@ import HowItWorks from "@/components/HowItWorks";
 import About from "@/components/About";
 import Portfolio from "@/components/Portfolio";
 import Skills from "@/components/Skills";
+import Reviews from "@/components/Reviews";
 import InquiryForm from "@/components/InquiryForm";
 import FreeCallCTA from "@/components/FreeCallCTA";
 import Contact from "@/components/Contact";
@@ -25,6 +26,9 @@ export default function Home() {
       </Reveal>
       <Reveal>
         <Skills />
+      </Reveal>
+      <Reveal>
+        <Reviews />
       </Reveal>
       <Reveal>
         <InquiryForm />
