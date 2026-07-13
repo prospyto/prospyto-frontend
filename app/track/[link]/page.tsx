@@ -6,6 +6,7 @@ import Link from "next/link";
 import ProgressBar from "./components/ProgressBar";
 import StatusBadge, { type TrackStatus } from "./components/StatusBadge";
 import ReviewForm from "./components/ReviewForm";
+import BlogSuggestions from "./components/BlogSuggestions";
 
 type TrackData = {
   title: string;
@@ -164,6 +165,8 @@ export default function TrackPage() {
             </div>
 
             {data.can_review && <ReviewForm link={link} />}
+
+            {data.status !== "complete" && <BlogSuggestions />}
           </>
         )}
       </div>
