@@ -33,22 +33,43 @@ export default function TrackPage() {
   useEffect(() => {
     if (!link) return;
 
-    fetch(`${apiBase}/api/track/${link}`)
-      .then((res) => {
-        if (res.status === 404) {
-          setLoadState("not_found");
-          return null;
-        }
-        if (!res.ok) throw new Error("Erreur de chargement");
-        return res.json();
-      })
-      .then((json) => {
-        if (json) {
+    let cancelled = false;
+
+    function fetchTrackData(isFirstLoad: boolean) {
+      const url = isFirstLoad
+        ? `${apiBase}/api/track/${link}`
+        : `${apiBase}/api/track/${link}?silent=1`;
+
+      fetch(url)
+        .then((res) => {
+          if (res.status === 404) {
+            if (!cancelled) setLoadState("not_found");
+            return null;
+          }
+          if (!res.ok) throw new Error("Erreur de chargement");
+          return res.json();
+        })
+        .then((json) => {
+          if (cancelled || !json) return;
           setData(json);
           setLoadState("ready");
-        }
-      })
-      .catch(() => setLoadState("error"));
+        })
+        .catch(() => {
+          // Sur un rafraîchissement en arrière-plan, on garde les dernières
+          // données affichées plutôt que de basculer sur un écran d'erreur.
+          if (!cancelled && isFirstLoad) setLoadState("error");
+        });
+    }
+
+    fetchTrackData(true);
+    // Rafraîchissement simple par polling (pas de websocket : inutile pour
+    // ce volume, et ça évite de gérer un serveur WS séparé sur Render).
+    const interval = setInterval(() => fetchTrackData(false), 20000);
+
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
   }, [apiBase, link]);
 
   return (
