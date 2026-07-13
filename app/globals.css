@@ -8,10 +8,26 @@
   --secondary-color: #e0aaff;
   --text-main: #ffffff;
 
+  /* Accent corail (CTA principaux) : distinct de l'orange utilisé par un
+     concurrent, tout en gardant une énergie chaleureuse. Choisi le 12/07. */
+  --accent-color: #FF5E5B;
+  --accent-hover: #FF3B30;
+  --accent-light: #FFB4A2;
+
+  /* Pilote la couleur des effets de bouton partagés (halo qui pulse, ombre
+     au survol, balayage du contour). Violet par défaut ; les boutons avec
+     la classe .btn-accent basculent sur le corail. Format "r, g, b" pour
+     s'utiliser directement dans rgba(var(--btn-halo-rgb), alpha). */
+  --btn-halo-rgb: 224, 170, 255;
+
   /* Couleurs sémantiques (statuts) - conservées de la V1, toujours valables sur fond sombre */
   --color-success-500: #10b981;
   --color-warning-500: #f59e0b;
   --color-error-500: #ef4444;
+}
+
+.btn-accent {
+  --btn-halo-rgb: 255, 94, 91;
 }
 
 @theme inline {
@@ -21,6 +37,9 @@
   --color-primary: var(--primary-color);
   --color-primary-hover: var(--primary-hover);
   --color-secondary: var(--secondary-color);
+  --color-accent: var(--accent-color);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-light: var(--accent-light);
   --color-text-main: var(--text-main);
 
   --color-success-500: var(--color-success-500);
@@ -367,7 +386,7 @@ input:focus {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--secondary-color) 50%,
+    rgb(var(--btn-halo-rgb)) 50%,
     transparent 100%
   );
   background-size: 250% 100%;
@@ -427,7 +446,7 @@ input:focus {
 
 .btn-animate:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 20px -6px rgba(90, 24, 154, 0.5);
+  box-shadow: 0 8px 20px -6px rgba(var(--btn-halo-rgb), 0.5);
 }
 
 .btn-animate:active {
@@ -471,10 +490,10 @@ input:focus {
 
 @keyframes btn-halo-pulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(224, 170, 255, 0.35);
+    box-shadow: 0 0 0 0 rgba(var(--btn-halo-rgb), 0.35);
   }
   50% {
-    box-shadow: 0 0 0 9px rgba(224, 170, 255, 0);
+    box-shadow: 0 0 0 9px rgba(var(--btn-halo-rgb), 0);
   }
 }
 

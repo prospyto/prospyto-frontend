@@ -221,7 +221,7 @@ export default function InquiryForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="mt-8 btn-animate btn-border-scan btn-primary-fx rounded-xl bg-primary hover:bg-primary-hover px-6 py-3 font-heading font-semibold text-sm text-white transition-colors disabled:opacity-60"
+          className="mt-8 btn-animate btn-border-scan btn-primary-fx btn-accent rounded-xl bg-accent hover:bg-accent-hover px-6 py-3 font-heading font-semibold text-sm text-white transition-colors disabled:opacity-60"
         >
           {status === "sending" ? "Envoi en cours" : "Envoyer la demande"}
         </button>

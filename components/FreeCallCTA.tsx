@@ -77,7 +77,7 @@ export default function FreeCallCTA() {
           />
           <button
             type="submit"
-            className="btn-animate btn-border-scan btn-primary-fx inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-primary hover:bg-primary-hover font-heading font-semibold text-white transition-colors whitespace-nowrap"
+            className="btn-animate btn-border-scan btn-primary-fx btn-accent inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-accent hover:bg-accent-hover font-heading font-semibold text-white transition-colors whitespace-nowrap"
           >
             {sent ? (
               <>
