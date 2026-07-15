@@ -71,7 +71,7 @@ export default function Portfolio() {
             >
               <div
                 className="relative h-64 md:h-72 w-full overflow-hidden rounded-t-2xl flex items-center justify-center"
-                style={{ background: "var(--surface-dark)" }}
+                style={{ background: "#000000" }}
               >
                 {proj.image ? (
                   <Image

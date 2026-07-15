@@ -46,7 +46,7 @@ export default function CaseStudy() {
           <div
             key={stat.label}
             className="rounded-xl p-4 text-center border border-white/10"
-            style={{ background: "var(--surface-medium)" }}
+            style={{ background: "#000000" }}
           >
             <p className="font-heading font-bold text-xl text-white">{stat.value}</p>
             <p className="mt-1 text-xs text-white/60 font-body">{stat.label}</p>

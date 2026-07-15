@@ -54,7 +54,7 @@ export default function HowItWorks() {
             <div
               key={step.number}
               className="relative p-6 rounded-2xl border border-white/10 hover:border-secondary/40 transition-colors h-full"
-              style={{ background: "var(--surface-medium)" }}
+              style={{ background: "#000000" }}
             >
               {/* Numéro */}
               <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-secondary flex items-center justify-center font-heading font-bold text-background text-lg">

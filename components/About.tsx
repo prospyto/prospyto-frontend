@@ -20,7 +20,7 @@ export default function About() {
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Avantage 1 */}
           <div className="p-6 rounded-2xl border border-white/10 hover:border-secondary/40 transition-colors"
-            style={{ background: "var(--surface-medium)" }}>
+            style={{ background: "#000000" }}>
             <Zap size={32} className="mb-3 text-secondary" />
             <h3 className="font-heading font-semibold text-lg text-white mb-2">
               Livraison rapide
@@ -32,7 +32,7 @@ export default function About() {
 
           {/* Avantage 2 */}
           <div className="p-6 rounded-2xl border border-white/10 hover:border-secondary/40 transition-colors"
-            style={{ background: "var(--surface-medium)" }}>
+            style={{ background: "#000000" }}>
             <Target size={32} className="mb-3 text-secondary" />
             <h3 className="font-heading font-semibold text-lg text-white mb-2">
               Comprendre ton besoin
@@ -44,7 +44,7 @@ export default function About() {
 
           {/* Avantage 3 */}
           <div className="p-6 rounded-2xl border border-white/10 hover:border-secondary/40 transition-colors"
-            style={{ background: "var(--surface-medium)" }}>
+            style={{ background: "#000000" }}>
             <Gem size={32} className="mb-3 text-secondary" />
             <h3 className="font-heading font-semibold text-lg text-white mb-2">
               Code de qualité
@@ -56,7 +56,7 @@ export default function About() {
 
           {/* Avantage 4 */}
           <div className="p-6 rounded-2xl border border-white/10 hover:border-secondary/40 transition-colors"
-            style={{ background: "var(--surface-medium)" }}>
+            style={{ background: "#000000" }}>
             <Handshake size={32} className="mb-3 text-secondary" />
             <h3 className="font-heading font-semibold text-lg text-white mb-2">
               Support post-lancement

@@ -27,7 +27,7 @@ export default function Services() {
           <div
             key={service.title}
             className="rounded-2xl p-6 border border-white/10"
-            style={{ background: "var(--surface-medium)" }}
+            style={{ background: "#000000" }}
           >
             <p className="font-heading font-semibold text-lg text-white">
               {service.title}

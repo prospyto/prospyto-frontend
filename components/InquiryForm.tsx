@@ -11,9 +11,9 @@ const PROJECT_TYPES = [
   "Autre",
 ];
 
-// Dégradé rouge-orange -> beige, cohérent avec la nouvelle identité Prospyto
-// Du beige clair au rouge-orange foncé pour les étapes du formulaire
-const STEP_COLORS = ["#ffecd1", "#f5c89b", "#dc2f02", "#c4280a", "#8a1a02"];
+// Dégradé jaune solaire -> or fumé chaud, cohérent avec la nouvelle identité Prospyto
+// Du jaune solaire brillant à l'or fumé pour les étapes du formulaire
+const STEP_COLORS = ["#FFB81C", "#F5A500", "#E6A500", "#CC8B00", "#B37A00"];
 
 type Status = "idle" | "sending" | "success" | "error";
 
