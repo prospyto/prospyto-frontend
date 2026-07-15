@@ -2,15 +2,15 @@
 
 :root {
   /* Palette officielle fournie (thème sombre violet) */
-  --background: #240046;
-  --primary-color: #5a189a;
-  --primary-hover: #7b2cbf;
-  --secondary-color: #e0aaff;
+  --background: #000000;
+  --primary-color: #FFB81C;
+  --primary-hover: #E6A500;
+  --secondary-color: #CC8B00;
   --text-main: #ffffff;
 
   /* Accent corail (CTA principaux) : distinct de l'orange utilisé par un
      concurrent, tout en gardant une énergie chaleureuse. Choisi le 12/07. */
-  --accent-color: #FF5E5B;
+  --accent-color: #FFB81C;
   --accent-hover: #FF3B30;
   --accent-light: #FFB4A2;
 
@@ -294,7 +294,7 @@ input:focus {
 .twinkle-star {
   position: absolute;
   border-radius: 50%;
-  background: var(--secondary-color, #e0aaff);
+  background: var(--secondary-color, #CC8B00);
   animation: star-twinkle 2.6s ease-in-out infinite;
 }
 
@@ -539,7 +539,7 @@ input:focus {
 
 .card-surface {
   position: relative;
-  background: linear-gradient(155deg, #33095e 0%, #1c0538 100%);
+  background: linear-gradient(155deg, #000000 0%, #000000 100%);
   border: 1px solid rgba(224, 170, 255, 0.14);
   border-radius: 1rem;
   box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.5);

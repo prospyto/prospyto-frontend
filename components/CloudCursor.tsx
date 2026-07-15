@@ -45,7 +45,7 @@ export default function CloudCursor() {
       style={{ willChange: "transform" }}
       aria-hidden
     >
-      <Hand size={32} color="var(--secondary-color, #e0aaff)" strokeWidth={1.75} />
+      <Hand size={32} color="var(--secondary-color, #CC8B00)" strokeWidth={1.75} />
     </div>
   );
 }

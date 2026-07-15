@@ -86,7 +86,7 @@ export default function Portfolio() {
                   </div>
                 )}
                 {proj.featured && (
-                  <span className="absolute top-3 left-3 text-[11px] px-2.5 py-1 rounded-full bg-secondary text-[#1c0538] font-heading font-semibold">
+                  <span className="absolute top-3 left-3 text-[11px] px-2.5 py-1 rounded-full bg-secondary text-[#000000] font-heading font-semibold">
                     Projet phare
                   </span>
                 )}

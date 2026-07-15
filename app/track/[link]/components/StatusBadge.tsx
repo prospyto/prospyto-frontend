@@ -8,7 +8,7 @@ const STATUS_LABEL: Record<TrackStatus, string> = {
 
 const STATUS_COLOR: Record<TrackStatus, string> = {
   discussion: "#f59e0b",
-  en_cours: "#5a189a",
+  en_cours: "#FFB81C",
   complete: "#10b981",
 };
 
