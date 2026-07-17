@@ -1,3 +1,5 @@
+import CardDeal from "./CardDeal";
+
 const FACTS = [
   {
     value: "4ème",
@@ -23,15 +25,18 @@ export default function Credentials() {
         Pourquoi travailler avec moi
       </h2>
 
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <CardDeal className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
         {FACTS.map((fact) => (
-          <div key={fact.label} className="border-l-2 border-primary pl-4">
+          <div
+            key={fact.label}
+            className="card-surface p-6 border-l-2 border-primary"
+          >
             <p className="font-heading font-bold text-xl text-white">{fact.value}</p>
             <p className="mt-1 text-sm font-medium text-white font-body">{fact.label}</p>
             <p className="mt-1 text-xs text-white/60 font-body">{fact.detail}</p>
           </div>
         ))}
-      </div>
+      </CardDeal>
     </section>
   );
 }

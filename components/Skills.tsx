@@ -14,6 +14,7 @@ import {
 } from "react-icons/si";
 import { Palette, Users, Puzzle, Compass, MessageCircle } from "lucide-react";
 import StaggerGroup from "./StaggerGroup";
+import BadgeCarousel from "./BadgeCarousel";
 
 const TECHNICAL_SKILLS = [
   { name: "Next.js", Icon: SiNextdotjs },
@@ -71,26 +72,13 @@ export default function Skills() {
         ))}
       </StaggerGroup>
 
-      {/* Compétences non-techniques */}
+      {/* Compétences non-techniques : cercle qui tourne, un badge affiché à chaque tour */}
       <p className="mt-10 font-heading font-semibold text-sm uppercase tracking-wide text-secondary">
         Non-techniques
       </p>
-      <StaggerGroup staggerMs={60} className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {SOFT_SKILLS.map(({ name, Icon }) => (
-          <div
-            key={name}
-            className="card-surface p-6 flex flex-col items-center justify-center gap-3 text-center h-full"
-          >
-            <div
-              className="w-12 h-12 rounded-full flex items-center justify-center"
-              style={{ background: "rgba(224, 170, 255, 0.12)" }}
-            >
-              <Icon size={22} className="text-secondary" />
-            </div>
-            <span className="text-sm text-white/85 font-body font-medium">{name}</span>
-          </div>
-        ))}
-      </StaggerGroup>
+      <div className="mt-6 flex justify-center">
+        <BadgeCarousel badges={SOFT_SKILLS} />
+      </div>
     </section>
   );
 }

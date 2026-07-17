@@ -1,10 +1,8 @@
 import Image from "next/image";
-import { Zap, ShoppingCart, Smartphone } from "lucide-react";
 import Blob from "./Blob";
 import Stars from "./Stars";
 import StatCounter from "./StatCounter";
 import ParticleRing from "./ParticleRing";
-import TypewriterLoop from "./TypewriterLoop";
 
 export default function Hero() {
   return (
@@ -21,7 +19,7 @@ export default function Hero() {
           <div className="md:col-start-1 md:row-start-1">
             <div className="hero-title-container mb-4">
               <h1 className="hero-title-sweep font-heading font-bold text-4xl md:text-5xl leading-tight tracking-tight">
-                <TypewriterLoop text="Tu as besoin d'un site web, d'une app, ou d'un outil?" />
+                Tu as besoin d&apos;un site web, d&apos;une app, ou d&apos;un outil?
               </h1>
             </div>
           </div>
@@ -48,24 +46,15 @@ export default function Hero() {
 
             {/* Liste des problèmes résolus */}
             <div className="space-y-3 mb-8">
-              <div className="flex items-start gap-3">
-                <Zap size={20} className="text-secondary flex-shrink-0 mt-0.5" />
-                <p className="text-white/80 font-body">
-                  <strong>Site web trop lent?</strong> Je le rends rapide et responsive.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <ShoppingCart size={20} className="text-secondary flex-shrink-0 mt-0.5" />
-                <p className="text-white/80 font-body">
-                  <strong>Pas de boutique en ligne?</strong> Je crée un e-commerce qui vend.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <Smartphone size={20} className="text-secondary flex-shrink-0 mt-0.5" />
-                <p className="text-white/80 font-body">
-                  <strong>Besoin d&apos;une app mobile ou outil interne?</strong> C&apos;est mon domaine.
-                </p>
-              </div>
+              <p className="text-white/80 font-body">
+                <strong>Site web trop lent?</strong> Je le rends rapide et responsive.
+              </p>
+              <p className="text-white/80 font-body">
+                <strong>Pas de boutique en ligne?</strong> Je crée un e-commerce qui vend.
+              </p>
+              <p className="text-white/80 font-body">
+                <strong>Besoin d&apos;une app mobile ou outil interne?</strong> C&apos;est mon domaine.
+              </p>
             </div>
 
             {/* CTA Principal */}
