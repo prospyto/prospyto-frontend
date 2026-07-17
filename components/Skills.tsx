@@ -12,7 +12,7 @@ import {
   SiTypescript,
   SiGit,
 } from "react-icons/si";
-import { Palette, Users, Puzzle, Compass, MessageCircle } from "lucide-react";
+import { Palette } from "lucide-react";
 import StaggerGroup from "./StaggerGroup";
 import BadgeCarousel from "./BadgeCarousel";
 
@@ -37,10 +37,10 @@ const TECHNICAL_SKILLS = [
 // Compétences non-techniques : traits de savoir-être courants et pertinents
 // pour un développeur freelance, pas des certifications ou scores inventés.
 const SOFT_SKILLS = [
-  { name: "Esprit collaboratif", Icon: Users },
-  { name: "Résolution de problèmes", Icon: Puzzle },
-  { name: "Autonomie", Icon: Compass },
-  { name: "Communication claire", Icon: MessageCircle },
+  { name: "Esprit collaboratif", icon: "users" as const },
+  { name: "Résolution de problèmes", icon: "puzzle" as const },
+  { name: "Autonomie", icon: "compass" as const },
+  { name: "Communication claire", icon: "message-circle" as const },
 ];
 
 export default function Skills() {

@@ -1,11 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Users, Puzzle, Compass, MessageCircle } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+const ICONS: Record<string, LucideIcon> = {
+  users: Users,
+  puzzle: Puzzle,
+  compass: Compass,
+  "message-circle": MessageCircle,
+};
 
 type Badge = {
   name: string;
-  Icon: LucideIcon;
+  icon: keyof typeof ICONS;
 };
 
 export default function BadgeCarousel({
@@ -28,7 +36,7 @@ export default function BadgeCarousel({
   }, [badges.length, turnMs]);
 
   const current = badges[index];
-  const Icon = current.Icon;
+  const Icon = ICONS[current.icon];
 
   return (
     <div className="flex flex-col items-center gap-4">
